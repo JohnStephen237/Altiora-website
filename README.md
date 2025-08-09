@@ -5,8 +5,7 @@
 Official marketing website for [Altiora](https://altiora.fit) — the fitness-focused social platform for sharing workouts, sports moments, and movement communities.
 
 This site is **built with [Astro](https://astro.build/)** for speed, **[Tailwind CSS](https://tailwindcss.com/)** for styling, and **MDX** for content flexibility.  
-It is deployed via [Vercel](https://vercel.com/) and designed to be content-first, multilingual, and easy to maintain.
-
+It’s deployed to **AWS S3** (static hosting) behind **Amazon CloudFront** (global CDN), with DNS via **Route 53**. Infrastructure is managed with **Terraform**.
 ---
 
 ## ✨ Features
@@ -40,7 +39,8 @@ altiora-site/
 - [Astro](https://astro.build/) — static site builder
 - [Tailwind CSS](https://tailwindcss.com/) — utility-first CSS
 - [MDX](https://mdxjs.com/) — markdown with JSX
-- [Vercel](https://vercel.com/) — hosting & deployment
+- **AWS S3 + CloudFront** — hosting & CDN
+- **Terraform** — infrastructure as code  
 - [Sanity](https://sanity.io/) *(optional)* — headless CMS for dynamic content
 
 ---
