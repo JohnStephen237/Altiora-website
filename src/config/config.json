@@ -1,0 +1,47 @@
+{
+  "site": {
+    "title": "Altiora – Empower & Elevate Together",
+    "base_url": "https://altiora.fit",
+    "base_path": "/",
+    "trailing_slash": false,
+    "favicon": "/images/favicon.png",
+    "logo": "/images/logo.svg",
+    "logo_width": "180",
+    "logo_height": "40",
+    "logo_text": "Altiora"
+  },
+
+  "settings": {
+    "pagination": 6,
+    "summary_length": 100
+  },
+
+  "google_tag_manager": {
+    "enable": true,
+    "gtm_id": "GTM-XXXXXX"
+  },
+
+  "call_to_action": {
+    "title": "Join the Movement Elevate Together",
+    "description": "Altiora is the social fitness platform where athletes, creators, and everyday movers share their journey. Connect with communities, discover workouts, and unlock your next level",
+    "button": {
+      "label": "Get Early Access",
+      "link": "https://altiora.fit/#signup"
+    }
+  },
+
+  "params": {
+    "footer_description": "Altiora is a community-driven fitness platform built to empower and elevate together. Share your workouts, join challenges, and grow stronger with the world",
+    "email": "contact@altiora.fit",
+    "location": "ViaNova LLC · Maryland, USA",
+    "phone": "+1 (240) 780-8531",
+    "contact_form_action": "/contact",
+    "copyright": "© 2025 Altiora. All rights reserved."
+  },
+
+  "metadata": {
+    "meta_author": "Altiora Team",
+    "meta_image": "/images/og-image.png",
+    "meta_description": "Altiora is the fitness-first social video platform. Empower & Elevate Together — join communities, share workouts, and discover the future of fitness"
+  }
+}
