@@ -67,7 +67,7 @@ members:
   title: Who we are
   description:  "Altiora is powered by a team of dreamers, builders and movers united by one mission: To redefine fitness for the world"
   member_list:
-    - name: Yasmit Wule Wule
+    - name: Yasmit Wule
       field: Collaborator
       image: "/images/users/user-1.png"
     - name: Johan Mbouwa Fokoua
