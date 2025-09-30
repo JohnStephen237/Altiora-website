@@ -36,6 +36,7 @@ jobs:
           organization: ${{ env.TF_CLOUD_ORGANIZATION }}
           workspace:    ${{ env.TF_WORKSPACE }}
           directory:    ${{ env.CONFIG_DIRECTORY }}
+          token:        ${{ env.TF_API_TOKEN }}  
 
       - name: Create Plan Run
         uses: hashicorp/tfc-workflows-github/actions/create-run@v1.0.0
@@ -45,12 +46,14 @@ jobs:
           workspace:             ${{ env.TF_WORKSPACE }}
           configuration_version: ${{ steps.upload.outputs.configuration_version_id }}
           message: "Plan (marketing) from ${{ github.sha }}"
+          token:        ${{ env.TF_API_TOKEN }}  
 
       - name: Show Plan Summary
         uses: hashicorp/tfc-workflows-github/actions/plan-output@v1.0.0
         with:
           organization: ${{ env.TF_CLOUD_ORGANIZATION }}
           plan:         ${{ fromJSON(steps.plan.outputs.payload).data.relationships.plan.data.id }}
+          token:        ${{ env.TF_API_TOKEN }}  
 
       - name: Apply (master only)
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
@@ -58,3 +61,4 @@ jobs:
         with:
           organization: ${{ env.TF_CLOUD_ORGANIZATION }}
           run:          ${{ steps.plan.outputs.run_id }}
+          token:        ${{ env.TF_API_TOKEN }}  
