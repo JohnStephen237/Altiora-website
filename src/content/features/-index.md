@@ -51,7 +51,7 @@ project_management:
       Altiora combines community, content, and challenges into one  
       Instead of switching apps or platforms  
       You get everything in one place
-    image: "/images/features/feature-img-1.png"
+    image: "/images/features/collaborations.png"
     list:
       - One hub for every fitness style
       - Challenges to fuel motivation
@@ -75,5 +75,5 @@ project_management:
         image: "/images/features/feature-img-1.png"
       - title: For Creators
         content: Build your audience, inspire movement, and lead communities worldwide
-        image: "/images/features/feature-img-2.png"
+        image: "/images/features/feature-img-3.png"
 ---

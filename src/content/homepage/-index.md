@@ -51,7 +51,7 @@ service:
   our_service:
     - title: Why Get In Early?
       desctiption: "Joining Altiora’s waitlist gives you exclusive access to experiences others won’t see until much later"
-      image: "/images/collaboration.png"
+      image: "/images/collaborations.png"
       list:
         - Be the first to test and shape new features
         - Secure early invites to community challenges

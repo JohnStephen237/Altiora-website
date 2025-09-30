@@ -38,9 +38,10 @@ gallery:
         Our story begins with a simple belief <br />
         Fitness is better together
   images:
-    - "/images/about/gallery-img-1.png"
-    - "/images/about/gallery-img-3.png"
-    - "/images/about/gallery-img-2.png"
+    - "/images/about/gallery-imgs-2.png"
+    - "/images/about/gallery-imgs-3.png"
+    - "/images/about/gallery-imgs-1.png"
+    - "/images/about/gallery-imgs-4.png"
 
 ## our values
 features:
@@ -67,12 +68,12 @@ members:
   description:  "Altiora is powered by a team of dreamers, builders and movers united by one mission: To redefine fitness for the world"
   member_list:
     - name: Yasmit Wule Wule
-      field: Advisor and Collaborator
+      field: Collaborator
       image: "/images/users/user-1.png"
     - name: Johan Mbouwa Fokoua
       field: Founder & CEO
       image: "/images/users/user-2.png"
     - name: Ntang Mahamat Godlove
-      field: Advisor and Collaborator
+      field: Collaborator
       image: "/images/users/user-3.png"
 ---

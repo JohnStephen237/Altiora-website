@@ -24,3 +24,22 @@ package-lock.json
 
 # ignore .astro directory
 .astro
+
+# ignore terraform files
+*.tfstate
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terragrunt-cache/
+
+# ignore IDE files
+.vscode/
+.idea/
+*.iml
+
+
