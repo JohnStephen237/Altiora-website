@@ -3,12 +3,8 @@ name: Terraform (Marketing Infra)
 on:
   pull_request:
     branches: [ master ]
-    paths:
-      - 'terraform/marketing/**'
   push:
     branches: [ master ]
-    paths:
-      - 'terraform/marketing/**'
 
 permissions:
   contents: read

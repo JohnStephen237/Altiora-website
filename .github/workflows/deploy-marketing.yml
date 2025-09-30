@@ -3,8 +3,6 @@ name: Deploy Marketing Site
 on:
   push:
     branches: [ master ]
-    paths:
-      - 'website/**'    # Adjust to Astro project path
 
 permissions:
   id-token: write
