@@ -32,9 +32,3 @@ variable "github_branch" {
   description = "GitHub branch name"
   type        = string
 }
-
-variable "github_token" {
-  description = "GitHub token (optional, can also use GITHUB_TOKEN env var)"
-  type        = string
-  sensitive  = true
-}

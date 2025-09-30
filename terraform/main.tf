@@ -4,7 +4,6 @@ provider "aws" {
 
 provider "github" {
   owner = var.github_owner
-  token = var.github_token # optional when using env GITHUB_TOKEN
 }
 
 module "aws" {
