@@ -2,10 +2,6 @@ provider "aws" {
   region = var.aws_region
 }
 
-provider "github" {
-  owner = var.github_owner
-}
-
 module "aws" {
   source = "./aws"
   astro_s3_bucket_name = var.astro_s3_bucket_name
