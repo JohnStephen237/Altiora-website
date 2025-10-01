@@ -34,3 +34,10 @@ data "aws_iam_policy_document" "marketing_permissions" {
 locals {
   github_oidc_provider_arn = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/token.actions.githubusercontent.com"
 }
+
+data "aws_acm_certificate" "altiora" {
+  domain       = var.astro_domain_name       # "altiora.fit"
+  statuses     = ["ISSUED", "PENDING_VALIDATION"]
+  most_recent  = true
+  types        = ["AMAZON_ISSUED"]
+}
