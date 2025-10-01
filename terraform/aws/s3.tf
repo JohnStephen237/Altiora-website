@@ -21,13 +21,17 @@ resource "aws_s3_bucket_policy" "marketing" {
   bucket = aws_s3_bucket.marketing.id
   policy = jsonencode({
     Version = "2012-10-17"
-    Statement = [
-      {
-        Effect    = "Allow"
-        Principal = "*"
-        Action    = "s3:GetObject"
-        Resource  = "${aws_s3_bucket.marketing.arn}/*"
+     Statement = [{
+      Sid       = "AllowCloudFrontReadViaOAC",
+      Effect    = "Allow",
+      Principal = { Service = "cloudfront.amazonaws.com" },
+      Action    = ["s3:GetObject"],
+      Resource  = "${aws_s3_bucket.marketing.arn}/*",
+      Condition = {
+        StringEquals = {
+          "AWS:SourceArn" = aws_cloudfront_distribution.marketing.arn
+        }
       }
-    ]
+    }]
   })
 }

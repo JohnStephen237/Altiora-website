@@ -5,6 +5,7 @@ resource "aws_cloudfront_distribution" "marketing" {
   origin {
     domain_name = aws_s3_bucket.marketing.bucket_regional_domain_name
     origin_id   = "marketing-origin"
+    origin_access_control_id = aws_cloudfront_origin_access_control.oac.id          # ← REQUIRED
   }
 
   default_cache_behavior {
