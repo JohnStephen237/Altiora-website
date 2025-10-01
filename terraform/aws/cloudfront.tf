@@ -21,9 +21,17 @@ resource "aws_cloudfront_distribution" "marketing" {
     }
 
     viewer_protocol_policy = "redirect-to-https"
+
+    # attach function here
+    function_association {
+      event_type   = "viewer-request"
+      function_arn = aws_cloudfront_function.dir_index_rewrite.arn
+    }
   }
 
   aliases = ["${var.astro_domain_name}", "www.${var.astro_domain_name}"]
+
+  
 
   restrictions {
     geo_restriction {
@@ -46,4 +54,31 @@ resource "aws_cloudfront_origin_access_control" "oac" {
   origin_access_control_origin_type = "s3"
   signing_behavior                  = "always"
   signing_protocol                  = "sigv4"
+}
+
+# 1) CloudFront Function: add index.html for pretty URLs
+resource "aws_cloudfront_function" "dir_index_rewrite" {
+  name    = "altiora-dir-index-rewrite"
+  runtime = "cloudfront-js-1.0"
+  comment = "Serve /index.html for directory-like URLs"
+  publish = true
+  code    = <<-JS
+    function handler(event) {
+      var req = event.request;
+      var uri = req.uri;
+
+      // If URL ends with a slash, serve index.html
+      if (uri.endsWith('/')) {
+        req.uri += 'index.html';
+        return req;
+      }
+
+      // If URL has no dot (no extension), treat it like a directory
+      if (uri.indexOf('.') === -1) {
+        req.uri += '/index.html';
+      }
+
+      return req;
+    }
+  JS
 }
