@@ -26,7 +26,7 @@
     "description": "Altiora is the social fitness platform where athletes, creators, and everyday movers share their journey. Connect with communities, discover workouts, and unlock your next level",
     "button": {
       "label": "Get Early Access",
-      "link": "https://altiora.fit/#signup"
+      "link": "https://altiora.fit/signup"
     }
   },
 
@@ -41,7 +41,7 @@
 
   "metadata": {
     "meta_author": "Altiora Team",
-    "meta_image": "/images/og-image.png",
+    "meta_image": "/images/favicon.png",
     "meta_description": "Altiora is the fitness-first social video platform. Empower & Elevate Together — join communities, share workouts, and discover the future of fitness"
   }
 }

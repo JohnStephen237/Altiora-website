@@ -3,118 +3,114 @@ import Base from "@/layouts/Base.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 ---
 
+<script type="module" src="/src/scripts/waitlist.ts"></script>
+
 <Base>
   <section>
     <div class="px-4 max-w-full">
       <div class="row">
+        <!-- Left: Waitlist form -->
         <div class="min-h-[980px] bg-white py-10 lg:col-6 lg:py-[114px]">
           <div class="mx-auto w-full max-w-[480px]">
-            <img class="mb-8" src="/images/flower.png" alt="" />
-            <h1 class="mb-4">Sign Up</h1>
-            <p>Donec sollicitudin molestie malesda sollitudin</p>
-            <div class="signin-options mt-10">
-              <a
-                class="btn btn-outline-white block w-full text-text-dark"
-                href="#">Sign Up With Google</a
-              >
-            </div>
-            <div
-              class="relative my-8 text-center after:absolute after:left-0 after:top-1/2 after:z-[0] after:w-full after:border-b after:border-border after:content-['']"
-            >
-              <span class="relative z-[1] inline-block bg-white px-2"
-                >Or Sign Up With Email</span
-              >
-            </div>
+            <img class="mb-8" src="/images/miniscule_logo.svg" alt="Altiora logo" />
 
-            <form action="#">
+            <h1 class="mb-3">Join the Altiora Waitlist</h1>
+            <p class="text-text">
+              Be among the pioneers of new-age fitness. Drop your name and email below
+            </p>
+
+            <form id="waitlist-form" class="mt-8" novalidate>
+              <!-- Honeypot (spam trap) -->
+              <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off" />
+
               <div class="form-group">
-                <label for="name" class="form-label">Full Name</label>
+                <label for="name" class="form-label">Name</label>
                 <input
                   type="text"
                   id="name"
+                  name="name"
                   class="form-control"
-                  placeholder="Your Full Name"
+                  placeholder="Your Name"
+                  required
+                  minlength="2"
                 />
+                <p class="mt-1 text-sm text-red-600 hidden" id="name-error">Please enter your name</p>
               </div>
+
               <div class="form-group mt-4">
                 <label for="email" class="form-label">Email Address</label>
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   class="form-control"
-                  placeholder="Your Email Address"
+                  placeholder="you@example.com"
+                  required
+                  inputmode="email"
                 />
+                <p class="mt-1 text-sm text-red-600 hidden" id="email-error">Please enter a valid email</p>
               </div>
-              <div class="form-group mt-4">
-                <label for="password" class="form-label">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  class="form-control"
-                  placeholder="Your Password"
-                />
+
+              <div class="mt-4 flex items-start gap-2">
+                <input id="consent" name="consent" type="checkbox" class="mt-1" required />
+                <label for="consent" class="text-sm leading-6">
+                  I agree to receive updates and marketing emails from Altiora.
+                  I can unsubscribe anytime
+                </label>
               </div>
-              <input
-                class="btn btn-primary mt-10 block w-full"
-                type="submit"
-                value="Sign Up"
-              />
+              <p class="mt-1 text-sm text-red-600 hidden" id="consent-error">Please check this box to proceed</p>
+
+              <!-- Optional metadata -->
+              <input type="hidden" name="source" value="altiora.waitlist" />
+              <input type="hidden" name="page" value="/signup" />
+
+              <button class="btn btn-primary mt-8 block w-full" type="submit" id="submit-btn">
+                Join Waitlist
+              </button>
+
+              <!-- Status messages -->
+              <div id="success" class="mt-4 rounded-lg border border-green-200 bg-green-50 p-3 text-green-800 hidden">
+                You're in! Check your inbox for a confirmation.
+              </div>
+              <div id="failure" class="mt-4 rounded-lg border border-red-200 bg-red-50 p-3 text-red-800 hidden">
+                Something went wrong. Please try again in a moment.
+              </div>
             </form>
-            <p class="mt-6 text-center">
-              Already have an account?
-              <a class="text-text-dark" href="/signin">Sign in</a>.
+
+            <p class="mt-6 text-center text-sm text-text">
+              By joining the waitlist, you agree to our
+              <a class="text-text-dark underline" href="/terms-and-conditions">Terms</a>
+              and
+              <a class="text-text-dark underline" href="/privacy-policy">Privacy Policy</a>.
             </p>
           </div>
         </div>
 
-        <!-- Swiper Section -->
-        <div
-          class="auth-banner bg-gradient flex flex-col items-center justify-center py-16 lg:col-6 lg:block overflow-hidden"
-        >
+        <!-- Right: Keep this visual area (you'll replace the images) -->
+        <div class="auth-banner bg-gradient flex flex-col items-center justify-center py-16 lg:col-6 lg:block overflow-hidden">
           <img
             class="absolute left-0 top-0 h-full w-full"
             src="/images/login-banner-bg.png"
-            alt="bg-image"
+            alt="Background"
           />
           <div class="w-full text-center">
             <h2
               class="h3 text-white"
-              set:html={markdownify(
-                "A suite product accelerate <br /> your career design"
-              )}
+              set:html={markdownify("A suite product accelerate <br /> your career design")}
             />
             <div class="auth-banner-carousel">
               <div class="swiper-container">
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
-                    <img
-                      width="667"
-                      height="557"
-                      class="mx-auto"
-                      src="/images/signup-carousel-img-1.png"
-                      alt=""
-                    />
+                    <img width="667" height="557" class="mx-auto" src="/images/signup-carousel-img-1.png" alt="" />
                   </div>
                   <div class="swiper-slide">
-                    <img
-                      width="667"
-                      height="557"
-                      class="mx-auto"
-                      src="/images/signup-carousel-img-1.png"
-                      alt=""
-                    />
+                    <img width="667" height="557" class="mx-auto" src="/images/signup-carousel-img-1.png" alt="" />
                   </div>
                   <div class="swiper-slide">
-                    <img
-                      width="667"
-                      height="557"
-                      class="mx-auto"
-                      src="/images/signup-carousel-img-1.png"
-                      alt=""
-                    />
+                    <img width="667" height="557" class="mx-auto" src="/images/signup-carousel-img-1.png" alt="" />
                   </div>
                 </div>
-
                 <div class="relative flex justify-center">
                   <div class="pagination"></div>
                 </div>
@@ -122,34 +118,9 @@ import { markdownify } from "@/lib/utils/textConverter";
             </div>
           </div>
         </div>
+        <!-- /Right -->
       </div>
     </div>
   </section>
 </Base>
 
-<script>
-  import { Swiper } from "swiper";
-  import "swiper/css";
-  import "swiper/css/pagination";
-  import { Autoplay, Pagination } from "swiper/modules";
-
-  // Astro: Page load event to initialize Swiper
-  document.addEventListener("astro:page-load", () => {
-    new Swiper(".swiper-container", {
-      modules: [Pagination, Autoplay],
-      spaceBetween: 24,
-      loop: true,
-      centeredSlides: true,
-      pagination: {
-        el: ".pagination",
-        type: "bullets",
-        clickable: true,
-      },
-      breakpoints: {
-        768: {
-          slidesPerView: 1,
-        },
-      },
-    });
-  });
-</script>

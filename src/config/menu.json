@@ -9,10 +9,6 @@
       "url": "/about"
     },
     {
-      "name": "Blog",
-      "url": "/blog"
-    },
-    {
       "name": "Features",
       "url": "/features"
     },
@@ -26,36 +22,24 @@
       "hasChildren": true,
       "children": [
         {
-          "name": "Careers",
-          "url": "/careers"
+          "name": "Sign Up",
+          "url": "/signup"
+        },
+        {
+          "name": "Terms And Conditions",
+          "url": "/terms-and-conditions"
         },
 
         {
-          "name": "Integrations",
-          "url": "/integrations"
-        },
-
-        {
-          "name": "Pricing",
-          "url": "/pricing"
-        },
-        {
-          "name": "Sign In",
-          "url": "/signin"
+          "name": "Privacy Policy",
+          "url": "/privacy-policy"
         },
 
         {
           "name": "Cookie Policy",
           "url": "/cookie-policy"
-        },
-        {
-          "name": "Privacy Policy",
-          "url": "/privacy-policy"
-        },
-        {
-          "name": "Terms And Conditions",
-          "url": "/terms-and-conditions"
         }
+        
       ]
     },
     {
@@ -74,12 +58,12 @@
       "url": "/contact"
     },
     {
-      "name": "Elements",
-      "url": "/elements"
+      "name": "Terms And Conditions",
+      "url": "/terms-and-conditions"
     },
     {
-      "name": "Changelog",
-      "url": "/changelog"
+      "name": "Privacy Policy",
+      "url": "/privacy-policy"
     }
   ]
 }
