@@ -1,9 +1,9 @@
 /* navbar toggler */
-input#nav-toggle:checked ~ label#show-button {
+input#nav-toggle:checked ~ .nav-controls label#show-button {
   @apply hidden;
 }
 
-input#nav-toggle:checked ~ label#hide-button {
+input#nav-toggle:checked ~ .nav-controls label#hide-button {
   @apply flex lg:hidden;
 }
 

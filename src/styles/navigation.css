@@ -1,9 +1,9 @@
 .header {
-  @apply sticky top-0 z-50 bg-white py-6 transition-all duration-300 lg:bg-transparent;
+  @apply sticky top-0 z-50 bg-white py-6 transition-all duration-300 lg:bg-transparent dark:bg-darkmode-body lg:dark:bg-transparent;
 }
 
 .header-sticky {
-  @apply bg-white shadow;
+  @apply bg-white shadow dark:bg-darkmode-light dark:shadow-black/20;
 }
 
 /* navbar items */
@@ -23,7 +23,7 @@
 }
 
 .nav-link {
-  @apply block p-3 py-2 text-[15px] text-text-dark transition hover:text-primary md:px-2 lg:inline-block;
+  @apply block p-3 py-2 text-[15px] text-text-dark transition hover:text-primary md:px-2 lg:inline-block dark:text-darkmode-text-dark dark:hover:text-darkmode-text-light;
 
   &.active {
     @apply relative;
@@ -39,7 +39,7 @@
 }
 
 .nav-dropdown-list {
-  @apply z-10 mx-auto ml-1 mt-4 max-w-[300px] rounded-lg border-0 border-solid  border-primary/25 bg-primary/5 px-4 py-3  shadow-sm duration-300  lg:mt-0 lg:border lg:bg-white lg:shadow-[0_0.9rem_1.56rem_rgb(0,0,0,0.1)];
+  @apply z-10 mx-auto ml-1 mt-4 max-w-[300px] rounded-lg border-0 border-solid  border-primary/25 bg-primary/5 px-4 py-3  shadow-sm duration-300  lg:mt-0 lg:border lg:bg-white lg:shadow-[0_0.9rem_1.56rem_rgb(0,0,0,0.1)] dark:border-darkmode-border dark:bg-darkmode-light lg:dark:bg-darkmode-light;
 }
 
 .nav-dropdown-item {
@@ -47,5 +47,5 @@
 }
 
 .nav-dropdown-link {
-  @apply min-w-[150px] py-1 text-sm font-medium text-text-dark transition hover:text-primary;
+ @apply min-w-[150px] py-1 text-sm font-medium text-text-dark transition hover:text-primary dark:text-darkmode-text dark:hover:text-darkmode-text-light;
 }

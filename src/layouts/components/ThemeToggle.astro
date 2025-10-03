@@ -1,0 +1,140 @@
+---
+const id = Astro.props.id ?? "theme-toggle";
+---
+<button
+  id={id}
+  type="button"
+  class="theme-toggle relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-light text-text transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:ring-offset-light dark:border-darkmode-border dark:bg-darkmode-light dark:text-darkmode-text dark:focus-visible:ring-offset-darkmode-light"
+  aria-label="Toggle color theme"
+  aria-live="polite"
+  aria-pressed="false"
+>
+  <span class="sr-only">Toggle dark mode</span>
+  <svg
+    class="icon-sun h-5 w-5"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <path
+      d="M12 5.75a6.25 6.25 0 1 0 0 12.5 6.25 6.25 0 0 0 0-12.5Z"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M12 1v2.5M12 20.5V23M4.221 4.221l1.768 1.768M18.011 18.011l1.768 1.768M1 12h2.5M20.5 12H23M4.221 19.779l1.768-1.768M18.011 5.989l1.768-1.768"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+  <svg
+    class="icon-moon h-5 w-5"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <path
+      d="M21 14.5A9 9 0 0 1 9.5 3a7.25 7.25 0 1 0 11.5 11.5Z"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+</button>
+
+<script is:inline>
+  (() => {
+    const storageKey = "altiora-theme";
+  const toggleButton = document.querySelector('.theme-toggle');
+    if (!toggleButton) {
+      return;
+    }
+    const root = document.documentElement;
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+    const applyTheme = (mode, persist = true) => {
+      const isDark = mode === "dark";
+      root.classList.toggle("dark", isDark);
+      root.dataset.theme = isDark ? "dark" : "light";
+      toggleButton.setAttribute("aria-pressed", String(isDark));
+      toggleButton.dataset.theme = isDark ? "dark" : "light";
+      if (persist) {
+        localStorage.setItem(storageKey, isDark ? "dark" : "light");
+      }
+    };
+
+    const getStoredTheme = () => localStorage.getItem(storageKey);
+
+    const syncButtonState = () => {
+      const current = root.classList.contains("dark") ? "dark" : "light";
+      toggleButton.setAttribute("aria-pressed", String(current === "dark"));
+      toggleButton.dataset.theme = current;
+    };
+
+    const storedTheme = getStoredTheme();
+    if (storedTheme) {
+      applyTheme(storedTheme, false);
+    }
+
+    toggleButton.addEventListener("click", () => {
+      const isDark = root.classList.contains("dark");
+      applyTheme(isDark ? "light" : "dark");
+    });
+
+    const handlePreferenceChange = (event) => {
+      if (getStoredTheme()) {
+        return;
+      }
+      applyTheme(event.matches ? "dark" : "light", false);
+      syncButtonState();
+    };
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", handlePreferenceChange);
+    } else if (typeof mediaQuery.addListener === "function") {
+      mediaQuery.addListener(handlePreferenceChange);
+    }
+
+    syncButtonState();
+  })();
+</script>
+
+<style>
+  .theme-toggle {
+    transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease,
+      transform 0.35s ease;
+  }
+
+  .theme-toggle .icon-sun,
+  .theme-toggle .icon-moon {
+    position: absolute;
+    transition: transform 0.45s ease, opacity 0.45s ease;
+  }
+
+  .theme-toggle .icon-sun {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  .theme-toggle .icon-moon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.6);
+  }
+
+  [data-theme="dark"] .theme-toggle .icon-sun {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.6);
+  }
+
+  [data-theme="dark"] .theme-toggle .icon-moon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+  </style>

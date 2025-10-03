@@ -167,6 +167,23 @@ const { title, meta_title, description, image, noindex, canonical } =
       }`}
     />
     <meta name="twitter:card" content="summary_large_image" />
+     <script is:inline>
+      (function () {
+        const storageKey = "altiora-theme";
+        const root = document.documentElement;
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+        try {
+          const storedTheme = localStorage.getItem(storageKey);
+          const theme = storedTheme || (prefersDark.matches ? "dark" : "light");
+          root.classList.toggle("dark", theme === "dark");
+          root.dataset.theme = theme;
+        } catch (error) {
+          const fallbackTheme = prefersDark.matches ? "dark" : "light";
+          root.classList.toggle("dark", fallbackTheme === "dark");
+          root.dataset.theme = fallbackTheme;
+        }
+      })();
+    </script>
   </head>
   <body>
     {/* google tag manager noscript */}

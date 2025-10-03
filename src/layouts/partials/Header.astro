@@ -1,5 +1,6 @@
 ---
 import Logo from "@/components/Logo.astro";
+import ThemeToggle from "@/components/ThemeToggle.astro";
 import menu from "@/config/menu.json";
 
 export interface ChildNavigationLink {
@@ -24,31 +25,39 @@ const { pathname } = Astro.url;
     <div class="order-0">
       <Logo />
     </div>
-    <!-- navbar toggler -->
+     <!-- navbar toggler + theme -->
     <input id="nav-toggle" type="checkbox" class="hidden" />
-    <label
-      id="show-button"
-      for="nav-toggle"
-      class="order-2 flex cursor-pointer items-center lg:order-1 lg:hidden"
+     <div
+      class="nav-controls order-2 ml-auto flex flex-row-reverse items-center gap-3 md:order-3 md:flex-row-reverse lg:order-2 lg:ml-8 lg:flex-row"
     >
-      <svg class="h-6 fill-current" viewBox="0 0 20 20">
-        <title>Menu Open</title>
-        <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
-      </svg>
-    </label>
-    <label
-      id="hide-button"
-      for="nav-toggle"
-      class="order-2 hidden cursor-pointer items-center lg:order-1"
-    >
-      <svg class="h-6 fill-current" viewBox="0 0 20 20">
-        <title>Menu Close</title>
-        <polygon
-          points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
-          transform="rotate(45 10 10)"></polygon>
-      </svg>
-    </label>
-    <!-- /navbar toggler -->
+       <ThemeToggle />
+      <label
+        id="show-button"
+        for="nav-toggle"
+        class="flex cursor-pointer items-center lg:hidden"
+      >
+        <svg class="h-6 fill-current" viewBox="0 0 20 20">
+          <title>Menu Open</title>
+          <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
+        </svg>
+      </label>
+      <label
+        id="hide-button"
+        for="nav-toggle"
+        class="hidden cursor-pointer items-center lg:hidden"
+      >
+        <svg class="h-6 fill-current" viewBox="0 0 20 20">
+          <title>Menu Close</title>
+          <polygon
+            points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
+            transform="rotate(45 10 10)"></polygon>
+        </svg>
+      </label>
+      <a class="btn btn-white btn-sm hidden lg:inline-flex" href="/signup">
+        Sign Up
+      </a>
+    </div>
+    <!-- /navbar toggler + theme -->
 
     <ul
       id="nav-menu"
@@ -114,9 +123,6 @@ const { pathname } = Astro.url;
         <a class="btn btn-white btn-sm border-border" href="/signup">Sign Up</a>
       </li>
     </ul>
-    <div class="order-1 ml-auto hidden items-center md:order-2 md:ml-0 lg:flex">
-      <a class="btn btn-white btn-sm" href="/signup"> Sign Up</a>
-    </div>
   </nav>
 </header>
 

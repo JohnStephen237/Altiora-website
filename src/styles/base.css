@@ -1,9 +1,21 @@
+:root {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
 html {
   @apply text-base;
 }
 
 body {
-  @apply bg-body bg-[url('/images/body-bg.svg')] bg-repeat font-primary font-normal leading-relaxed text-text overflow-x-hidden;
+  @apply bg-body bg-[url('/images/body-bg.svg')] bg-repeat font-primary font-normal leading-relaxed text-text transition-colors duration-500 ease-in-out overflow-x-hidden dark:bg-darkmode-body dark:text-darkmode-text;
+}
+
+html.dark body {
+  background-image: none;
 }
 
 h1,
@@ -12,9 +24,8 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-secondary font-bold leading-tight text-text-dark;
+  @apply font-secondary font-bold leading-tight text-text-dark dark:text-darkmode-text-dark transition-colors duration-500 ease-in-out;
 }
-
 h1,
 .h1 {
   @apply text-h1-sm md:text-h1;
@@ -51,4 +62,13 @@ strong {
 }
 code {
   @apply after:border-none;
+}
+.dark .bg-white {
+  --tw-bg-opacity: 1;
+  background-color: #111111 !important;
+}
+
+.dark .border-white {
+  --tw-border-opacity: 1;
+  border-color: #333333 !important;
 }

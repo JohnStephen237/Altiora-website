@@ -45,6 +45,13 @@ const getVars = (groups) => {
 
 const defaultVars = getVars(defaultColorGroups);
 const darkVars = getVars(darkColorGroups);
+const darkAliases = {};
+darkColorGroups.forEach(({ colors }) => {
+  Object.entries(colors).forEach(([k, v]) => {
+    const cssKey = k.replace(/_/g, "-");
+    darkAliases[`--color-${cssKey}`] = v;
+  });
+});
 
 const baseSize = Number(themeConfig.fonts.font_size.base);
 const scale = Number(themeConfig.fonts.font_size.scale);
@@ -86,7 +93,7 @@ module.exports = plugin.withOptions(() => {
     // Default vars on :root; dark vars on .dark
     addBase({
       ":root": baseVars,
-      ".dark": darkVars,
+      ".dark": { ...darkVars, ...darkAliases },
     });
 
     const fontUtils = {};

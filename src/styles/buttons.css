@@ -1,5 +1,5 @@
 .btn {
-  @apply inline-block h-[52px] border border-border px-8 py-2 text-sm font-medium leading-[36px] transition-all duration-200;
+ @apply inline-block h-[52px] border border-border px-8 py-2 text-sm font-medium leading-[36px] transition-all duration-200 dark:border-darkmode-border;
 }
 
 .btn-primary {
@@ -7,7 +7,7 @@
 }
 
 .btn-outline-primary {
-  @apply relative rounded-[50px] border-primary bg-transparent text-center capitalize text-text-dark hover:bg-transparent hover:text-white hover:shadow-[0px_5px_30px_rgba(252,167,111,0.5)] hover:before:opacity-100;
+  @apply relative rounded-[50px] border-primary bg-transparent text-center capitalize text-text-dark hover:bg-transparent hover:text-white hover:shadow-[0px_5px_30px_rgba(252,167,111,0.5)] hover:before:opacity-100 dark:text-darkmode-text;
 }
 
 .btn-outline-primary::before {
@@ -19,7 +19,7 @@
 }
 
 .btn-white {
-  @apply min-w-[150px] rounded-[50px] border-white bg-white text-center capitalize text-text-dark shadow-lg hover:shadow;
+  @apply min-w-[150px] rounded-[50px] border-white bg-white text-center capitalize text-text-dark shadow-lg hover:shadow dark:border-darkmode-border dark:bg-darkmode-light dark:text-darkmode-text;
 }
 
 .btn-sm {
