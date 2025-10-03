@@ -15,9 +15,14 @@ const { title, button, image, content } = banner;
 
         {
           button.enable && (
-            <a class="btn btn-white mt-8" href={button.link}>
-              {button.label}
-            </a>
+            <a
+      href={button.link}
+      class="btn mt-8 bg-[#FFC300] hover:bg-[#FFB000] text-[#FFFFFF]
+             focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFC300]
+             rounded-3xl"
+    >
+      {button.label}
+    </a>
           )
         }
       </div>

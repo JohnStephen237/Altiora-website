@@ -1,126 +1,158 @@
-<h1 align=center>Pinwheel Astro</h1>
-<p align=center>Pinwheel is a free multipurpose SaaS theme built with Astro, TailwindCSS, and TypeScript with 17+ pre-designed pages.</p>
-<h2 align="center"><a target="_blank" href="https://pinwheel-astro.vercel.app/" rel="nofollow"> 👀 Demo</a> | <a  target="_blank" href="https://pagespeed.web.dev/analysis/https-pinwheel-astro-vercel-app/kmaxqwa7rx?form_factor=desktop"> Page Speed (95+) 🚀 </a>
-</h2>
-<p align=center>
-  <a href="https://github.com/withastro/astro/releases/tag/astro%405.12.8" alt="Contributors">
-    <img src="https://img.shields.io/static/v1?label=ASTRO&message=5.12&color=000&logo=astro" />
-  </a>
+# Altiora Website (Open Source)
 
-  <a href="https://github.com/themefisher/pinwheel-astro/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/themefisher/pinwheel-astro" alt="license"></a>
+Altiora is a fitness-first platform and community.  
+This repo contains the open-source marketing site built with **Astro + Tailwind CSS + TypeScript**.  
+It’s fast by default (static HTML), content-driven (Markdown/MDX), and deploys cleanly to any static host (S3/CloudFront, Netlify, Vercel, etc.).
 
-  <img src="https://img.shields.io/github/languages/code-size/themefisher/pinwheel-astro" alt="code size">
+> Live site: https://altiora.fit
 
-  <a href="https://github.com/themefisher/pinwheel-astro/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/themefisher/bigspring-light-astro" alt="contributors"></a>
-</p>
+---
 
-![pinwheel](https://demo.themefisher.com/thumbnails/pinwheel.png)
+## ✨ Highlights
 
-<!-- small description -->
+- ⚡ **Zero-JS by default** with Astro Islands for selective interactivity
+- 🧱 **Content Collections** with typed frontmatter (safe, MD-first editing)
+- 🧭 **Central Base layout** for consistent SEO/meta + theming
+- 🖼️ **Optimized images** via `astro:assets` or `/public` with responsive output
+- 📨 **Form-ready** (waitlist/contact) — works with Netlify, Formspree, or custom endpoints
+- 🔍 **SEO-friendly**: clean URLs, meta tags, OG images, sitemap/robots (via integrations)
+- 📱 **Responsive**: Tailwind utility design system
+- 🧩 **Composable pages**: content-driven 404, About, Features, Terms, etc.
+- ☁️ **Static hosting**: S3/CloudFront-friendly, works behind any CDN
 
-<!-- key features -->
+---
 
-## 📌 Key Features
+## 📁 Project Structure
 
-- 📄 17+ Pre-designed pages
-- 🎨 Highly customizable (Color, Font, Menu, Social Links, SEO Meta Tags, etc.)
-- 🗃️ Taxonomy support
-- ⚡ Fast by default (95+ Google PageSpeed Score)
-- 🔧 Netlify setting pre-configured
-- 📝 Contact form support
-- 🖼️ Support OG image
-- 📝 Write and update content in Markdown / MDX
-- 💻 MDX components auto import
-- 📝 Includes draft pages and posts
-- 🎨 Built with Tailwind CSS framework
-- 📱 Fully responsive on desktops, tablets, and smartphones
-- 🔍 SEO Friendly
+├── public/
+│ └── images/ # Static assets (served as-is)
+├── src/
+│ ├── components/
+│ │ └── PageHeader.astro
+│ ├── content/
+│ │ ├── config.ts # Content Collections schema (Zod)
+│ │ └── pages/
+│ │ ├── 404.md # MD-driven 404 content
+│ │ └── ... # Other page content (about, terms, etc.)
+│ ├── layouts/
+│ │ └── Base.astro # Global <head>, meta, and shell
+│ ├── pages/
+│ │ ├── 404.astro # Renders content from content/pages/404.md
+│ │ └── index.astro # Home (or MDX)
+│ └── lib/
+│ └── utils/textConverter.ts
+├── astro.config.mjs
+├── tailwind.config.cjs
+├── tsconfig.json
+└── package.json
 
-## 📄 17+ Pre-Designed Pages
+Content lives in `src/content/pages`. Types are enforced in `src/content.config.ts`.
 
-- 🏠 Home
-- 🛠️ How it works
-- 🌟 Features
-- 📝 Blog
-- 📝 Blog Single
-- 🗂️ Categories
-- 🗂️ Category Single
-- 👤 About
-- 📞 Contact
-- 💼 Career
-- 💼 Career Single
-- 💰 Pricing
-- 📜 Changelog
-- 🔑 Sign In
-- 🔑 Sign Up
-- 🔗 Integrations
-- 🔗 Integration Single
-- 📜 Terms and Conditions
-- 💡 Elements
+🔧 Configuration
 
-<!-- installation -->
+Site settings: src/config/config.json (e.g., params.contact_form_action)
 
-## 🛠️ Installation
+Images:
 
-After downloading the template, you need to install some prerequisites. Then you can run it on your localhost. You can view the package.json file to see which scripts are included.
+Put raw/static files in /public/images and use <img src="/images/..." />
 
-### Install prerequisites (once for a machine)
+Or import via astro:assets for automatic optimization:
 
-- **Node Installation:** [Install node js](https://nodejs.org/en/download/) [Recommended LTS version]
-
-### 👨🏻‍💻 Local setup
-
-After successfully installing those dependencies, open this template with any IDE [[VS Code](https://code.visualstudio.com/) recommended], and then open the internal terminal of IDM [vs code shortcut <code>ctrl/cmd+\`</code>]
-
-- 👉 Install dependencies
-
+---
+// import Hero from "@/assets/hero.png";
+---
+<!-- <Image src={Hero} alt="..." /> -->
 ```
+
+Editor defaults: .editorconfig keeps line endings/indentation consistent
+
+Formatting: use Prettier + ESLint (optional) for code style
+
+📨 Forms (Waitlist / Contact)
+
+This project ships with semantic forms and spam-safe defaults (labels, required, honeypot).
+Point action to your provider or serverless endpoint:
+
+Netlify: <form method="POST" netlify> (add hidden honeypot field)
+
+Formspree: action="https://formspree.io/f/xxxxxxx"
+
+Custom: handle POST in your API and return a redirect/thank-you
+
+🛠️ Getting Started
+Prerequisites
+
+Node.js LTS (recommended)
+
+Local Dev
 npm install
-```
-
-- 👉 Run locally
-
-```
 npm run dev
-```
 
-After that, it will open up a preview of the template in your default browser, watch for changes to source files, and live-reload the browser when changes are saved.
 
-## 🏗️ Production Build
+Open the local URL printed in your terminal. Edits hot-reload automatically.
 
-After finishing all the customization, you can create a production build by running this command.
-
-```
+Production Build
 npm run build
-```
 
-<!-- reporting issue -->
 
-## 🐞 Reporting Issues
+Output is generated in ./dist.
 
-We use GitHub Issues as the official bug tracker for this Template. Please search [existing issues](https://github.com/themefisher/pinwheel-astro/issues). It’s possible someone has already reported the same problem.
-If your problem or idea has not been addressed yet, feel free to [open a new issue](https://github.com/themefisher/pinwheel-astro/issues).
+🚀 Deployment
+S3/CloudFront (example)
 
-<!-- licence -->
+Build: npm run build
 
-## 📝 License
+Sync: aws s3 sync dist/ s3://YOUR_BUCKET --delete
 
-Copyright (c) 2023 - Present, Designed & Developed by [Themefisher](https://themefisher.com)
+Set Index to index.html and Error to 404.html (or custom) in S3/CloudFront
 
-**Code License:** Released under the [MIT](https://github.com/themefisher/pinwheel-astro/blob/main/LICENSE) license.
+Invalidate CloudFront: aws cloudfront create-invalidation --distribution-id ABC123 --paths "/*"
 
-**Image license:** The images are only for demonstration purposes. They have their license, and we don't have permission to share those images.
+Also ensure your DNS (Route 53) points to the CDN and that 404s are served by the CDN rather than redirecting to /.
 
-## 💻 Need Custom Development Services?
+Netlify / Vercel
 
-Besides developing beautifully designed and blazing-fast themes, we help businesses create fast, performance-focused, scalable & secure websites based on NextJS, Hugo, Astro, etc.
+Import the repo, set build command npm run build, output dir dist
 
-If you need custom theme development, theme customization, or complete website development services from scratch, you can [Hire Us](https://themefisher.com/contact).
+Add Astro integrations for sitemap/robots if desired
 
-## 🔥 More Astro Themes By Themefisher
+🧪 Scripts
 
-| [![Bigpsring](https://demo.gethugothemes.com/thumbnails/bigspring.png)](https://themefisher.com/products/bigspring-light-astro) | [![Andromeda](https://demo.gethugothemes.com/thumbnails/andromeda.png)](https://themefisher.com/products/andromeda-astro) | [![Bookwrom](https://demo.gethugothemes.com/thumbnails/bookworm.png)](https://themefisher.com/products/bookworm-astro) |
-| :-----------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------: |
-|                                                       **Bigpsring Light**                                                       |                                                       **Andromeda**                                                       |                                                   **Bookwom Light**                                                    |
+dev — start local dev server
+
+build — production build
+
+preview — preview production build locally
+
+(See package.json for the full list.)
+
+🤝 Contributing
+
+We welcome issues and pull requests!
+
+Fork the repo & create a feature branch: feat/your-change
+
+npm i && npm run dev
+
+Add or update tests/content if relevant
+
+Submit a PR describing the change and screenshots when UI changes
+
+Please keep performance (Lighthouse), accessibility (labels, contrast), and SEO (head/meta) in mind.
+
+🛡️ License
+
+Code: MIT © Altiora Contributors
+
+Brand & Content (logos, names, mascots, copy, images, videos): All Rights Reserved.
+Do not use Altiora brand assets without written permission.
+
+Third-party packages and assets retain their own licenses.
+
+
+🙏 Acknowledgements
+
+Built with Astro
+, Tailwind CSS
+, and the broader open-source community.
+

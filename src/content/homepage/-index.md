@@ -6,7 +6,7 @@ banner:
   button:
     enable: true
     label: Claim Your Spot
-    link: "https://themefisher.com/astro-themes/pinwheel-astro"
+    link: "/signup"
 
 ##key features
 key_features:
