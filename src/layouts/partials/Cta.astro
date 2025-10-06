@@ -1,11 +1,15 @@
 ---
-import config from "@/config/config.json";
+import configRaw from "@/config/config.json";
+const config: any = configRaw;
+const { t } = Astro.props;
 
 const {
   call_to_action: {
     title,
+    titleKey,
     description,
-    button: { label, link },
+    descriptionKey,
+    button: { label, labelKey, link },
   },
 } = config;
 ---
@@ -18,12 +22,12 @@ const {
       <div class="lg:col-11">
         <div class="row">
           <div class="lg:col-7">
-            <h2 class="h1 text-white">{title}</h2>
-            <a class="btn btn-white mt-8" href={link}>{label}</a>
+            <h2 class="h1 text-white">{titleKey && typeof t === 'function' ? t(titleKey) : title}</h2>
+            <a class="btn btn-white mt-8" href={link}>{labelKey && typeof t === 'function' ? t(labelKey) : label}</a>
           </div>
           <div class="mt-8 lg:col-5 lg:mt-0">
             <p class="text-white">
-              {description}
+              {descriptionKey && typeof t === 'function' ? t(descriptionKey) : description}
             </p>
           </div>
         </div>

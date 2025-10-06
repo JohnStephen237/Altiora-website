@@ -1,21 +1,28 @@
 ---
 import { markdownify } from "@/lib/utils/textConverter";
 import Base from "@/layouts/Base.astro";
+import { loadLocale, createTranslator } from "@/i18n";
+
+const pathSegments = Astro.url.pathname.split("/").filter(Boolean);
+const locale = pathSegments.length && pathSegments[0].length === 2 ? pathSegments[0] : "en";
+const localeMap = loadLocale(locale);
+const t = createTranslator(localeMap);
 ---
 
 <Base>
+  <!-- locale initialized in frontmatter -->
   <section>
     <div class="px-4 max-w-full">
       <div class="row">
         <div class="min-h-[980px] bg-white py-10 lg:col-6 lg:py-[114px]">
           <div class="mx-auto w-full max-w-[480px]">
             <img class="mb-8" src="/images/flower.png" alt="" />
-            <h1 class="mb-4">Sign In</h1>
-            <p>Donec sollicitudin molestie malesda sollitudin</p>
+            <h1 class="mb-4">{t("header.home") /* fallback: replace with a proper key later */}</h1>
+            <p>{t("auth.signInDescription")}</p>
             <div class="signin-options mt-10">
-              <a
+                <a
                 class="btn btn-outline-white block w-full text-text-dark"
-                href="#">Sign In With Google</a
+                href="#">{t("auth.signInWithGoogle")}</a
               >
             </div>
             <div
@@ -28,35 +35,34 @@ import Base from "@/layouts/Base.astro";
 
             <form action="#">
               <div class="form-group">
-                <label for="email" class="form-label">Email Address</label>
+                <label for="email" class="form-label">{t("auth.emailAddress")}</label>
                 <input
                   type="email"
                   id="email"
                   class="form-control"
-                  placeholder="Your Email Address"
+                  placeholder={t("auth.placeholder.email")}
                 />
               </div>
               <div class="form-group mt-4">
-                <label for="password" class="form-label">Password</label>
+                <label for="password" class="form-label">{t("auth.password")}</label>
                 <input
                   type="password"
                   id="password"
                   class="form-control"
-                  placeholder="Your Password"
+                  placeholder={t("auth.placeholder.password")}
                 />
               </div>
               <input
                 class="btn btn-primary mt-10 block w-full"
                 type="submit"
-                value="Sign In"
+                value={t("auth.signIn")}
               />
               <p class="mt-6 text-center">
                 Trouble signing in?
                 <a class="text-text-dark" href="/password-reset"
-                  >Reset your password</a
+                  >{t("auth.resetPassword")}</a
                 >.
-                <br />Or <a class="text-text-dark" href="/signup">Sign up</a> to
-                create an account.
+                <br />{t("auth.or")}{' '}<a class="text-text-dark" href="/signup">{t("header.signUp")}</a> {t("auth.toCreateAccount")}
               </p>
             </form>
           </div>

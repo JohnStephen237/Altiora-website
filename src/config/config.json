@@ -1,6 +1,7 @@
 {
   "site": {
     "title": "Altiora – Empower & Elevate Together",
+    "titleKey": "site.title",
     "base_url": "https://altiora.fit",
     "base_path": "/",
     "trailing_slash": false,
@@ -23,9 +24,12 @@
 
   "call_to_action": {
     "title": "Join the Movement Elevate Together",
+    "titleKey": "cta.title",
     "description": "Altiora is the social fitness platform where athletes, creators, and everyday movers share their journey. Connect with communities, discover workouts, and unlock your next level",
+    "descriptionKey": "cta.description",
     "button": {
       "label": "Get Early Access",
+      "labelKey": "cta.getEarlyAccess",
       "link": "/signup"
     }
   },

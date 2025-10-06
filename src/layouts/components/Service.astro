@@ -3,7 +3,7 @@ import HomepageTab from "@/layouts/function-components/HomepageTab";
 import VideoComponent from "@/layouts/function-components/VideoComponent";
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
-import { AiFillCheckCircle } from "react-icons/ai";
+// inline SVG will be used for check icons to avoid React/JSX interop issues
 
 type Props = {
   service: CollectionEntry<"homepage">["data"]["service"];
@@ -67,7 +67,11 @@ const { homepage_tab, our_service } = service;
                 {item.list &&
                   item.list.map((list) => (
                     <li class="mb-2 flex items-center rounded px-4">
-                      <AiFillCheckCircle className="mr-3 fill-(--color-primary) text-white" />
+                      <span class="check-badge mr-3" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                          <path d="M9 16.17L4.83 12 3.41 13.41 9 19l12-12-1.41-1.41z" />
+                        </svg>
+                      </span>
                       {list}
                     </li>
                   ))}

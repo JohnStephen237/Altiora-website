@@ -1,16 +1,18 @@
 ---
 banner:
   title: "The Future of Fitness Begins Here"
+  titleKey: cta.homeBannerTitle
   content: "We are building the global fitness movement of tomorrow — where every workout, every game, and every journey connects into one<br>Those who join now are not just users — they are founders of the community that will define the future"
   image: /images/banner-img.png
   button:
     enable: true
-    label: Claim Your Spot
+    labelKey: cta.claimYourSpot
     link: "/signup"
 
 ##key features
 key_features:
   title: "Why Join the Waitlist?"
+  titleKey: cta.whyJoin
   description: "Altiora is more than just another app — it’s the start of a movement<br> Join early and be part of shaping the future of fitness"
   feature_list:
     - icon: "users" #icon package react-feather-icon
@@ -63,7 +65,7 @@ service:
         video_id: "g3-VxLQO7do"
       button:
         enable: true
-        label: Claim Your Spot
+        labelKey: cta.claimYourSpot
         link: "/signup"
 
 #testimonial

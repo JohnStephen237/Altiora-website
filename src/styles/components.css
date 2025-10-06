@@ -35,10 +35,81 @@
   @apply overflow-hidden rounded-lg border border-border;
 }
 
+/* Global icon/button/link theme overrides */
+:root {
+  --global-icon-color: #000080; /* light theme icon color */
+  --global-btn-bg: #000080; /* light theme button bg */
+  --global-btn-text: #ffffff; /* light theme button text */
+  --global-link-hover: #FFC300; /* golden hover */
+}
+
+.dark,
+[data-theme="dark"] {
+  --global-icon-color: #00BFFF; /* dark theme icon color */
+  --global-btn-bg: #00BFFF; /* dark theme button bg */
+  --global-btn-text: #000000; /* dark theme button text (contrast) */
+}
+
+/* Icons: make inline SVGs inherit the global icon color */
+svg {
+  color: var(--global-icon-color) !important;
+  /* ensure SVGs using currentColor pick it up */
+}
+svg * {
+  stroke: currentColor !important;
+  fill: currentColor !important;
+}
+
+/* Buttons: set background and text colors according to theme */
+.btn-primary,
+.btn-white,
+.btn {
+  background-color: var(--global-btn-bg) !important;
+  color: var(--global-btn-text) !important;
+  border-color: var(--global-btn-bg) !important;
+}
+
+.btn-outline-primary {
+  border-color: var(--global-btn-bg) !important;
+  color: var(--global-btn-bg) !important;
+}
+.btn-outline-primary:hover {
+  background-color: var(--global-btn-bg) !important;
+  color: var(--global-btn-text) !important;
+}
+
+/* Links: golden hover and animated underline */
+a {
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+}
+
+a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 2px;
+  width: 0;
+  background: var(--global-link-hover);
+  transition: width 220ms ease-in-out, opacity 220ms ease-in-out;
+  opacity: 0.95;
+}
+
 .tab-nav {
+  color: var(--global-link-hover) !important;
   @apply flex border-b border-border bg-light m-0 list-none;
+  width: 100%;
+  opacity: 1;
   @apply m-0;
   @apply list-none;
+}
+
+/* Ensure links inside footer and dropdowns still inherit readable color */
+.footer a,
+.nav-dropdown-link {
+  color: inherit;
 }
 
 .tab-nav-item {
@@ -280,12 +351,18 @@ select:invalid {
 }
 
 .video-play-btn {
-  @apply absolute left-1/2 top-1/2 z-10 flex h-[78px] w-[78px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary cursor-pointer;
+  @apply absolute left-1/2 top-1/2 z-10 flex h-[78px] w-[78px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full cursor-pointer;
+  /* Force gold background and white icon/text for video play button in both themes */
+  background-color: #FFC300 !important;
+  color: #ffffff !important;
   animation: shadow-pulse 1.5s infinite;
 }
 
 .video-play-btn svg {
-  @apply h-6 w-5 text-white;
+  @apply h-6 w-5;
+  /* ensure the SVG uses currentColor so the forced white color applies */
+  color: inherit !important;
+  fill: currentColor !important;
 }
 
 .video-play-btn::after {
@@ -400,8 +477,16 @@ select:invalid {
 }
 /* footer */
 .footer {
+  /* footer color variables (defaults for light theme) */
+  --footer-bg: #000080;
+  --footer-text: #ffffff;
+  --footer-link: rgba(255,255,255,0.95);
+
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
   h6 {
     @apply mb-4 font-primary font-semibold lg:mb-8;
+    color: #FFC300; /* golden headers in footer */
   }
 
   p {
@@ -411,6 +496,42 @@ select:invalid {
   li > a {
     @apply text-sm hover:text-primary hover:underline;
   }
+}
+
+/* Dark mode footer override: make footer background #00BFFF and adjust text */
+.dark .footer,
+[data-theme="dark"] .footer {
+  --footer-bg: #00BFFF !important;
+  --footer-text: #ffffff;
+  --footer-link: rgba(255,255,255,0.95);
+}
+
+.dark .footer h6,
+[data-theme="dark"] .footer h6 {
+  color: var(--footer-text);
+}
+
+.dark .footer a,
+[data-theme="dark"] .footer a {
+  color: var(--footer-link);
+}
+
+/* Gold CTA for signup / early access / claim your spot */
+a[href*="/signup"],
+.btn[href*="/signup"],
+a.cta-claim,
+.btn-claim {
+  background-color: #FFC300 !important;
+  color: #ffffff !important;
+  border-color: #FFC300 !important;
+}
+
+a[href*="/signup"]:hover,
+.btn[href*="/signup"]:hover,
+a.cta-claim:hover,
+.btn-claim:hover {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
 }
 
 /* gradient-number */
@@ -444,6 +565,25 @@ select:invalid {
 
 .card-footer {
   @apply border-t border-border pb-0 pt-6;
+}
+
+/* gold circular badge for check icons */
+.check-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  background-color: #FFC300;
+  color: #ffffff;
+}
+
+.check-badge svg {
+  width: 16px;
+  height: 16px;
+  color: inherit !important;
+  fill: currentColor !important;
 }
 
 /* tag */

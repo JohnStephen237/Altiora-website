@@ -2,14 +2,17 @@
   "main": [
     {
       "name": "Home",
+      "nameKey": "header.home",
       "url": "/"
     },
     {
       "name": "About",
+      "nameKey": "header.about",
       "url": "/about"
     },
     {
       "name": "Features",
+      "nameKey": "header.features",
       "url": "/features"
     },
     {
@@ -18,15 +21,18 @@
     },
     {
       "name": "Pages",
+      "nameKey": "header.pages",
       "url": "",
       "hasChildren": true,
       "children": [
         {
           "name": "Sign Up",
+          "nameKey": "header.signUp",
           "url": "/signup"
         },
         {
           "name": "Terms And Conditions",
+          "nameKey": "footer.terms",
           "url": "/terms-and-conditions"
         },
 
@@ -39,11 +45,12 @@
           "name": "Cookie Policy",
           "url": "/cookie-policy"
         }
-        
+
       ]
     },
     {
       "name": "Contact",
+      "nameKey": "header.contact",
       "url": "/contact"
     }
   ],

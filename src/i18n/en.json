@@ -1,0 +1,64 @@
+{
+  "header": {
+    "home": "Home",
+    "about": "About",
+    "features": "Features",
+    "howItWorks": "How It Works",
+    "pages": "Pages",
+    "contact": "Contact",
+    "signUp": "Sign Up"
+  },
+  "menu": {
+    "open": "Open menu",
+    "close": "Close menu"
+  },
+  "footer": {
+    "about": "About",
+    "contact": "Contact",
+    "terms": "Terms And Conditions",
+    "privacy": "Privacy Policy",
+    "socials": "Socials",
+    "quickLinks": "Quick Links",
+    "locationContact": "Location & Contact"
+  },
+  "cta": {
+    "claimYourSpot": "Claim Your Spot",
+    "getEarlyAccess": "Get Early Access",
+    "returnHome": "Return to Home",
+    "joinWaitlist": "Join the Waitlist"
+  }
+  ,
+  "site": {
+    "title": "Altiora – Empower & Elevate Together"
+  },
+  "cta_extra": {
+    "title": "Join the Movement Elevate Together",
+    "description": "Altiora is the social fitness platform where athletes, creators, and everyday movers share their journey. Connect with communities, discover workouts, and unlock your next level",
+    "homeBannerTitle": "The Future of Fitness Begins Here",
+    "whyJoin": "Why Join the Waitlist?"
+  },
+  "meta": {
+    "about": "About Altiora — The Global Fitness Movement",
+    "features": "Altiora Features — The Future of Fitness and Community"
+  }
+  ,
+  "auth": {
+    "signInDescription": "Donec sollicitudin molestie malesda sollitudin",
+    "signInWithGoogle": "Sign In With Google",
+    "emailAddress": "Email Address",
+    "password": "Password",
+    "placeholder": {
+      "email": "Your Email Address",
+      "password": "Your Password"
+    },
+    "signIn": "Sign In",
+    "resetPassword": "Reset your password",
+    "or": "Or",
+    "toCreateAccount": "to create an account.",
+    "dontHaveAccount": "Don't have an account?",
+    "passwordReset": "Password Reset",
+    "passwordResetDescription": "Enter the email address for your account to request a password reset. An email will be sent to the email address on your account with a reset link.",
+    "resetPasswordButton": "Reset Password",
+    "toYourAccount": "to your account."
+  }
+}

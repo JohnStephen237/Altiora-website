@@ -1,7 +1,9 @@
 ---
 title: "About"
+titleKey: header.about
 page_title: "About Altiora"
 meta_title: "About Altiora — The Global Fitness Movement"
+metaTitleKey: header.aboutMeta
 description: "Altiora is where fitness meets community. We are building the global hub that unites every workout, every game, and every journey into one movement."
 image: ""
 buttons:

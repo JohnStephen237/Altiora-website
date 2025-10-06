@@ -6,6 +6,7 @@ import menu from "@/config/menu.json";
 export interface ChildNavigationLink {
   name: string;
   url: string;
+  nameKey?: string;
 }
 
 export interface NavigationLink {
@@ -13,10 +14,12 @@ export interface NavigationLink {
   url: string;
   hasChildren?: boolean;
   children?: ChildNavigationLink[];
+  nameKey?: string;
 }
 
 const { main }: { main: NavigationLink[] } = menu;
 const { pathname } = Astro.url;
+const { t } = Astro.props;
 ---
 
 <header class="header">
@@ -37,7 +40,7 @@ const { pathname } = Astro.url;
         class="flex cursor-pointer items-center lg:hidden"
       >
         <svg class="h-6 fill-current" viewBox="0 0 20 20">
-          <title>Menu Open</title>
+          <title>{t?.("header.menuOpen")}</title>
           <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
         </svg>
       </label>
@@ -47,14 +50,14 @@ const { pathname } = Astro.url;
         class="hidden cursor-pointer items-center lg:hidden"
       >
         <svg class="h-6 fill-current" viewBox="0 0 20 20">
-          <title>Menu Close</title>
+          <title>{t?.("header.menuClose")}</title>
           <polygon
             points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
             transform="rotate(45 10 10)"></polygon>
         </svg>
       </label>
-      <a class="btn btn-white btn-sm hidden lg:inline-flex" href="/signup">
-        Sign Up
+      <a class="btn btn-white btn-sm btn-claim hidden lg:inline-flex" href="/signup">
+        {t?.("header.signUp")}
       </a>
     </div>
     <!-- /navbar toggler + theme -->
@@ -78,7 +81,7 @@ const { pathname } = Astro.url;
                       : ""
                   }`}
                 >
-                  {menu.name}
+                  {menu.nameKey && typeof t === 'function' ? t(menu.nameKey) : menu.name}
                   <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
                     <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                   </svg>
@@ -97,7 +100,7 @@ const { pathname } = Astro.url;
                           "text-primary"
                         }`}
                       >
-                        {child.name}
+                        {child.nameKey && typeof t === 'function' ? t(child.nameKey) : child.name}
                       </a>
                     </li>
                   ))}
@@ -120,7 +123,7 @@ const { pathname } = Astro.url;
         ))
       }
       <li class="nav-item mt-2 lg:hidden">
-        <a class="btn btn-white btn-sm border-border" href="/signup">Sign Up</a>
+        <a class="btn btn-white btn-sm btn-claim border-border" href="/signup">{t?.("header.signUp")}</a>
       </li>
     </ul>
   </nav>

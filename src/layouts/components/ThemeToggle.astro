@@ -50,12 +50,11 @@ const id = Astro.props.id ?? "theme-toggle";
 </button>
 
 <script is:inline>
-  (() => {
+  // Ensure this setup runs on initial load and on Astro client-side navigations
+  document.addEventListener("astro:page-load", () => {
     const storageKey = "altiora-theme";
-  const toggleButton = document.querySelector('.theme-toggle');
-    if (!toggleButton) {
-      return;
-    }
+    const toggleButton = document.querySelector(".theme-toggle");
+    if (!toggleButton) return;
     const root = document.documentElement;
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -65,6 +64,8 @@ const id = Astro.props.id ?? "theme-toggle";
       root.dataset.theme = isDark ? "dark" : "light";
       toggleButton.setAttribute("aria-pressed", String(isDark));
       toggleButton.dataset.theme = isDark ? "dark" : "light";
+      // also set a class for reliable CSS targeting
+      toggleButton.classList.toggle('is-dark', isDark);
       if (persist) {
         localStorage.setItem(storageKey, isDark ? "dark" : "light");
       }
@@ -76,6 +77,8 @@ const id = Astro.props.id ?? "theme-toggle";
       const current = root.classList.contains("dark") ? "dark" : "light";
       toggleButton.setAttribute("aria-pressed", String(current === "dark"));
       toggleButton.dataset.theme = current;
+      // ensure class reflects root state
+      toggleButton.classList.toggle('is-dark', current === 'dark');
     };
 
     const storedTheme = getStoredTheme();
@@ -83,15 +86,17 @@ const id = Astro.props.id ?? "theme-toggle";
       applyTheme(storedTheme, false);
     }
 
-    toggleButton.addEventListener("click", () => {
-      const isDark = root.classList.contains("dark");
-      applyTheme(isDark ? "light" : "dark");
-    });
+    // Avoid adding duplicate listeners on repeated page loads
+    if (!toggleButton.dataset._themeListenerAttached) {
+      toggleButton.addEventListener("click", () => {
+        const isDark = root.classList.contains("dark");
+        applyTheme(isDark ? "light" : "dark");
+      });
+      toggleButton.dataset._themeListenerAttached = "1";
+    }
 
     const handlePreferenceChange = (event) => {
-      if (getStoredTheme()) {
-        return;
-      }
+      if (getStoredTheme()) return;
       applyTheme(event.matches ? "dark" : "light", false);
       syncButtonState();
     };
@@ -103,7 +108,7 @@ const id = Astro.props.id ?? "theme-toggle";
     }
 
     syncButtonState();
-  })();
+  });
 </script>
 
 <style>
@@ -117,24 +122,42 @@ const id = Astro.props.id ?? "theme-toggle";
     position: absolute;
     transition: transform 0.45s ease, opacity 0.45s ease;
   }
-
+  /* Default: assume light theme until dataset/theme set on the button */
   .theme-toggle .icon-sun {
-    opacity: 1;
-    transform: rotate(0deg) scale(1);
+    opacity: 0;
+    transform: rotate(90deg) scale(0.6);
+    color: #000000 !important; /* black in light theme */
   }
 
   .theme-toggle .icon-moon {
-    opacity: 0;
-    transform: rotate(-90deg) scale(0.6);
-  }
-
-  [data-theme="dark"] .theme-toggle .icon-sun {
-    opacity: 0;
-    transform: rotate(90deg) scale(0.6);
-  }
-
-  [data-theme="dark"] .theme-toggle .icon-moon {
     opacity: 1;
     transform: rotate(0deg) scale(1);
+    color: #000000 !important; /* black in light theme */
+  }
+
+  /* When the toggle button has class .is-dark, show sun and hide moon */
+  .theme-toggle.is-dark .icon-sun {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+    color: #FFFFFF !important; /* white in dark theme */
+  }
+
+  .theme-toggle.is-dark .icon-moon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.6);
+    color: #FFFFFF !important; /* white in dark theme */
+  }
+
+  /* When the toggle button does NOT have .is-dark ensure moon visible */
+  .theme-toggle:not(.is-dark) .icon-sun {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.6);
+    color: #000000 !important;
+  }
+
+  .theme-toggle:not(.is-dark) .icon-moon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+    color: #000000 !important;
   }
   </style>

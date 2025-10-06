@@ -5,6 +5,7 @@ import theme from "@/config/theme.json";
 import { plainify } from "@/lib/utils/textConverter";
 import Footer from "@/partials/Footer.astro";
 import Header from "@/partials/Header.astro";
+import { loadLocale, createTranslator } from "@/i18n";
 import "@/styles/main.css";
 import { AstroFont } from "astro-font";
 import { ClientRouter } from "astro:transitions";
@@ -31,6 +32,11 @@ if (theme.fonts.font_family.secondary) {
 
 const { title, meta_title, description, image, noindex, canonical } =
   Astro.props;
+// determine locale from path prefix like /es/ or default to en
+const pathSegments = Astro.url.pathname.split("/").filter(Boolean);
+const locale = pathSegments.length && pathSegments[0].length === 2 ? pathSegments[0] : "en";
+const localeMap = loadLocale(locale);
+const t = createTranslator(localeMap);
 ---
 
 <!doctype html>
@@ -92,7 +98,15 @@ const { title, meta_title, description, image, noindex, canonical } =
 
     <!-- title -->
     <title>
-      {plainify(meta_title ? meta_title : title ? title : config.site.title)}
+      {plainify(
+        meta_title
+          ? meta_title
+          : title
+          ? title
+          : config.site.titleKey && typeof t === 'function'
+          ? t(config.site.titleKey)
+          : config.site.title
+      )}
     </title>
 
     <!-- canonical url -->
@@ -167,36 +181,46 @@ const { title, meta_title, description, image, noindex, canonical } =
       }`}
     />
     <meta name="twitter:card" content="summary_large_image" />
-     <script is:inline>
+    <script is:inline>
       (function () {
         const storageKey = "altiora-theme";
         const root = document.documentElement;
         const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-        try {
-          const storedTheme = localStorage.getItem(storageKey);
-          const theme = storedTheme || (prefersDark.matches ? "dark" : "light");
-          root.classList.toggle("dark", theme === "dark");
-          root.dataset.theme = theme;
-        } catch (error) {
-          const fallbackTheme = prefersDark.matches ? "dark" : "light";
-          root.classList.toggle("dark", fallbackTheme === "dark");
-          root.dataset.theme = fallbackTheme;
+
+        function applyStoredOrPreference() {
+          try {
+            const storedTheme = localStorage.getItem(storageKey);
+            const theme = storedTheme || (prefersDark.matches ? "dark" : "light");
+            root.classList.toggle("dark", theme === "dark");
+            root.dataset.theme = theme;
+          } catch (error) {
+            const fallbackTheme = prefersDark.matches ? "dark" : "light";
+            root.classList.toggle("dark", fallbackTheme === "dark");
+            root.dataset.theme = fallbackTheme;
+          }
         }
+
+        // Run on initial load
+        applyStoredOrPreference();
+
+        // Also run on Astro client-side navigation
+        document.addEventListener("astro:page-load", applyStoredOrPreference);
       })();
     </script>
   </head>
   <body>
-    {/* google tag manager noscript */}
+    <!-- google tag manager noscript -->
     {
       config.google_tag_manager.enable && (
         <GoogleTagmanagerNoscript id={config.google_tag_manager.gtm_id} />
       )
     }
     <TwSizeIndicator />
-    <Header />
+    <!-- locale initialized in frontmatter -->
+    <Header t={t} />
     <main id="main-content">
       <slot />
     </main>
-    <Footer />
+  <Footer t={t} />
   </body>
 </html>

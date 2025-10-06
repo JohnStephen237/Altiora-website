@@ -1,6 +1,8 @@
 ---
 title: Features
+titleKey: header.features
 meta_title: "Altiora Features — The Future of Fitness and Community"
+metaTitleKey: header.featuresMeta
 description: "Altiora brings together fitness, community, and creativity. Share workouts, join challenges, and connect with movers everywhere."
 image: ""
 banner:

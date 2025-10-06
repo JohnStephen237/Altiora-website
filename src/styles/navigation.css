@@ -6,6 +6,11 @@
   @apply bg-white shadow dark:bg-darkmode-light dark:shadow-black/20;
 }
 
+/* Ensure sticky header respects dark mode background when scrolled */
+.dark .header-sticky {
+  background-color: var(--color-darkmode-body) !important; /* fallback: theme dark body */
+}
+
 /* navbar items */
 .navbar {
   @apply relative flex flex-wrap items-center justify-between;
@@ -40,6 +45,20 @@
 
 .nav-dropdown-list {
   @apply z-10 mx-auto ml-1 mt-4 max-w-[300px] rounded-lg border-0 border-solid  border-primary/25 bg-primary/5 px-4 py-3  shadow-sm duration-300  lg:mt-0 lg:border lg:bg-white lg:shadow-[0_0.9rem_1.56rem_rgb(0,0,0,0.1)] dark:border-darkmode-border dark:bg-darkmode-light lg:dark:bg-darkmode-light;
+}
+
+/* Ensure dropdown submenu uses dark colors in dark mode */
+.dark .nav-dropdown-list,
+[data-theme="dark"] .nav-dropdown-list {
+  background-color: var(--color-darkmode-light) !important;
+  border-color: var(--color-darkmode-border) !important;
+  color: var(--color-darkmode-text) !important;
+  box-shadow: none !important;
+}
+
+.dark .nav-dropdown-link,
+[data-theme="dark"] .nav-dropdown-link {
+  color: var(--color-darkmode-text) !important;
 }
 
 .nav-dropdown-item {

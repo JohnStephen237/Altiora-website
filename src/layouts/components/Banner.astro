@@ -2,6 +2,7 @@
 import { markdownify } from "@/lib/utils/textConverter";
 import { Image } from "astro:assets";
 const { banner } = Astro.props;
+const { t } = Astro.props;
 const { title, button, image, content } = banner;
 ---
 
@@ -21,7 +22,7 @@ const { title, button, image, content } = banner;
              focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FFC300]
              rounded-3xl"
     >
-      {button.label}
+      {button.labelKey && typeof t === 'function' ? t(button.labelKey) : button.label}
     </a>
           )
         }

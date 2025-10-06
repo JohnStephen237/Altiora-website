@@ -1,0 +1,64 @@
+{
+  "header": {
+    "home": "Inicio",
+    "about": "Acerca",
+    "features": "Características",
+    "howItWorks": "Cómo Funciona",
+    "pages": "Páginas",
+    "contact": "Contacto",
+    "signUp": "Regístrate"
+  },
+  "menu": {
+    "open": "Abrir menú",
+    "close": "Cerrar menú"
+  },
+  "footer": {
+    "about": "Acerca",
+    "contact": "Contacto",
+    "terms": "Términos y Condiciones",
+    "privacy": "Política de Privacidad",
+    "socials": "Redes Sociales",
+    "quickLinks": "Enlaces Rápidos",
+    "locationContact": "Ubicación y Contacto"
+  },
+  "cta": {
+    "claimYourSpot": "Reserva tu lugar",
+    "getEarlyAccess": "Obtén Acceso Anticipado",
+    "returnHome": "Volver al inicio",
+    "joinWaitlist": "Únete a la lista de espera"
+  }
+  ,
+  "site": {
+    "title": "Altiora – Empoderar y Elevar Juntos"
+  },
+  "cta_extra": {
+    "title": "Únete al movimiento — Eleva juntos",
+    "description": "Altiora es la plataforma social de fitness donde atletas, creadores y personas comparten su viaje. Conéctate con comunidades, descubre entrenamientos y desbloquea tu siguiente nivel",
+    "homeBannerTitle": "El futuro del fitness comienza aquí",
+    "whyJoin": "¿Por qué unirse a la lista de espera?"
+  },
+  "meta": {
+    "about": "Acerca de Altiora — El Movimiento Global del Fitness",
+    "features": "Características de Altiora — El futuro del fitness y la comunidad"
+  }
+  ,
+  "auth": {
+    "signInDescription": "Donec sollicitudin molestie malesda sollitudin",
+    "signInWithGoogle": "Iniciar sesión con Google",
+    "emailAddress": "Dirección de correo",
+    "password": "Contraseña",
+    "placeholder": {
+      "email": "Tu dirección de correo",
+      "password": "Tu contraseña"
+    },
+    "signIn": "Iniciar sesión",
+    "resetPassword": "Restablecer contraseña",
+    "or": "O",
+    "toCreateAccount": "para crear una cuenta.",
+    "dontHaveAccount": "¿No tienes una cuenta?",
+    "passwordReset": "Restablecer contraseña",
+    "passwordResetDescription": "Introduce la dirección de correo asociada a tu cuenta para solicitar un restablecimiento de contraseña. Se enviará un correo con un enlace para restablecerla.",
+    "resetPasswordButton": "Restablecer contraseña",
+    "toYourAccount": "a tu cuenta."
+  }
+}

@@ -1,60 +1,80 @@
-Altiora Open Source License (AOSL) v1.0
-(Code: MIT; Brand & Content: All Rights Reserved)
+# Altiora Open Source License (AOSL) v1.0
+*(Code: MIT; Brand & Content: All Rights Reserved)*
 
-Copyright (c) 2025–Present, ViaNova LLC and Altiora Contributors
+**Copyright © 2025–Present ViaNova LLC and Altiora Contributors**
 
-SECTION A — SOURCE CODE (MIT LICENSE)
-Permission is hereby granted, free of charge, to any person obtaining a copy of this
-software and associated source code files (the “Code”), to deal in the Code without
-restriction, including without limitation the rights to use, copy, modify, merge,
-publish, distribute, sublicense, and/or sell copies of the Code, and to permit persons
-to whom the Code is furnished to do so, subject to the following conditions:
+---
 
-1) The above copyright notice and this permission notice shall be included in all
-   copies or substantial portions of the Code.
+## 📜 Preamble
+This repository contains the public, open-source website code for **Altiora .fit**,
+a project by **ViaNova LLC**.
 
-THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
-INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
-PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE CODE
-OR THE USE OR OTHER DEALINGS IN THE CODE.
+Altiora shares its source code to inspire learning, transparency, and community contribution —
+while preserving full ownership over its **brand, content, and creative assets**.
 
-SECTION B — TRADEMARKS & BRAND ASSETS (ALL RIGHTS RESERVED)
-The names “Altiora”, “ViaNova”, the Altiora wordmarks and logos, the characters/
-mascots “Cappy” and “Croc”, the tagline “Altiora - Empower and Elevate Together”, and associated
-brand elements including distinctive color palettes and brand styles (collectively,
-the “Brand Assets”) are exclusive property of ViaNova LLC. No license to the Brand
-Assets is granted by this License.
+Use, modify, and learn from the code freely under the MIT terms below,
+but please respect that all **branding, mascots, and media remain proprietary**.
 
-You may not use the Brand Assets in product names, domain names, advertising,
-social handles, app/store listings, or in a manner that implies endorsement or
-affiliation, without prior written permission from ViaNova LLC. Fair, factual
-references such as “built with Altiora website code” are permitted.
+---
 
-SECTION C — WEBSITE CONTENT & MEDIA (ALL RIGHTS RESERVED)
-Unless otherwise noted within the file itself, all non-code content in this repository
-— including but not limited to copywriting, blog posts, page content (e.g., Markdown
-in `src/content/**`), images/illustrations/videos (e.g., under `/public` or `/assets`),
-iconography, and downloadable media (collectively, “Content & Media”) — is NOT
-licensed under MIT and is provided “All Rights Reserved” by ViaNova LLC and/or the
-respective rightsholders. You may not copy, redistribute, or create derivative works
-from Content & Media without express permission, except as permitted by applicable law.
+## ⚖️ Table of Contents
+- [Section A — Source Code (MIT License)](#section-a--source-code-mit-license)
+- [Section B — Trademarks & Brand Assets (All Rights Reserved)](#section-b--trademarks--brand-assets-all-rights-reserved)
+- [Section C — Website Content & Media (All Rights Reserved)](#section-c--website-content--media-all-rights-reserved)
+- [Section D — Third-Party Components](#section-d--third-party-components)
+- [Section E — Contributions](#section-e--contributions)
+- [Section F — Miscellaneous](#section-f--miscellaneous)
 
-SECTION D — THIRD-PARTY COMPONENTS
-This project may include third-party libraries, fonts, or assets that are separately
-licensed. Those components remain subject to their own licenses. Where included,
-their original license terms govern your use of those components.
+---
 
-SECTION E — CONTRIBUTIONS
-By submitting a contribution, you represent that you have the right to do so and
-you agree to license your contribution’s Code under Section A (MIT) and, if it
-includes Content & Media, under Section C (All Rights Reserved unless explicitly
-stated otherwise in the file). Trademark rights are not granted by contributions.
+## **SECTION A — SOURCE CODE (MIT LICENSE)**
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated source code files (the “Code”), to deal in the Code without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Code, and to permit persons to whom the Code is furnished to do so, subject to the following conditions:
 
-SECTION F — MISCELLANEOUS
-This License supersedes any conflicting notices contained in prior templates or
-upstream theme files. If a file explicitly declares a different license within
-its header, that declaration governs that file.
+1. The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Code.
 
-END OF TERMS
+THE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE CODE OR THE USE OR OTHER DEALINGS IN THE CODE.
+
+---
+
+## **SECTION B — TRADEMARKS & BRAND ASSETS (ALL RIGHTS RESERVED)**
+The names **“Altiora”**, **“ViaNova”**, the Altiora wordmarks and logos, the characters/mascots **“Cappy”** and **“Croc”**, the tagline **“Altiora — Empower and Elevate Together”**, and all related brand identifiers including color palettes, typography, and visual styles (collectively, the “Brand Assets”) are the exclusive property of **ViaNova LLC**.
+
+No license or right to use the Brand Assets is granted by this License.
+
+You may **not** use the Brand Assets in product names, domain names, advertising, social handles, app/store listings, or in any manner that implies endorsement, affiliation, or official association with ViaNova LLC **without prior written consent**.
+
+Fair and factual references (e.g., “built using the Altiora website code”) are permitted.
+
+---
+
+## **SECTION C — WEBSITE CONTENT & MEDIA (ALL RIGHTS RESERVED)**
+Unless explicitly noted otherwise within the file itself, all non-code materials in this repository — including but not limited to copywriting, Markdown content (`src/content/**`), text, blog posts, metadata, images, illustrations, videos, animations, iconography, and downloadable media (`/public`, `/assets`, etc.) — are collectively defined as **“Content & Media.”**
+
+All Content & Media are **All Rights Reserved** by ViaNova LLC and/or their respective rightsholders.
+
+You may **not** copy, redistribute, or create derivative works from any Content & Media without express written permission, except as permitted under applicable law (e.g., fair use).
+
+---
+
+## **SECTION D — THIRD-PARTY COMPONENTS**
+This project may incorporate third-party libraries, fonts, or assets that are separately licensed. Such components remain subject to their respective license terms. The inclusion of third-party components does not imply any endorsement by their authors.
+
+---
+
+## **SECTION E — CONTRIBUTIONS**
+By submitting a contribution, you represent and warrant that you have the necessary rights to do so and agree that:
+
+1. Your contributed **Code** is licensed under **Section A (MIT)**.
+2. Any contributed **Content & Media** are licensed under **Section C (All Rights Reserved)**, unless explicitly stated otherwise within the file.
+3. No trademark rights are granted or transferred by contributions.
+
+---
+
+## **SECTION F — MISCELLANEOUS**
+This License supersedes any conflicting license statements contained in upstream templates or third-party theme files included in this project.
+
+If a specific file explicitly declares a different license within its header, that file’s declared license governs its use.
+
+---
+
+**END OF TERMS**

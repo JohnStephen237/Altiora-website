@@ -3,6 +3,7 @@ import Base from "@/layouts/Base.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 import type { CollectionEntry } from "astro:content";
 import { getEntry, render } from "astro:content";
+import { loadLocale, createTranslator } from "@/i18n";
 
 const entry = (await getEntry("pages", "404")) as CollectionEntry<"pages">;
 const { Content } = await render(entry);
@@ -16,9 +17,15 @@ const description =
   data.description ?? "We couldn’t find that page — let’s get you moving again.";
 const image = data.image ?? "/images/404.svg";
 
-const ctaPrimary = data.cta_primary ?? { label: "Return to Home", href: "/" };
-const ctaSecondary = data.cta_secondary ?? { label: "Join the Waitlist", href: "/signup" };
-const links: Array<{ label: string; href: string }> =
+const pathSegments = Astro.url.pathname.split("/").filter(Boolean);
+const locale = pathSegments.length && pathSegments[0].length === 2 ? pathSegments[0] : "en";
+const localeMap = loadLocale(locale);
+const t = createTranslator(localeMap);
+
+// allow optional labelKey on CTAs coming from content
+const ctaPrimary: any = data.cta_primary ?? { label: "Return to Home", href: "/" };
+const ctaSecondary: any = data.cta_secondary ?? { label: "Join the Waitlist", href: "/signup" };
+const links: any[] =
   data.links ?? [
     { label: "Features", href: "/features" },
     { label: "About", href: "/about" },
@@ -28,6 +35,7 @@ const links: Array<{ label: string; href: string }> =
 ---
 
 <Base title={metaTitle} description={description} image={image}>
+  <!-- locale initialized in frontmatter -->
   <section class="relative overflow-hidden">
     <!-- Deep navy gradient background -->
     <div class="absolute inset-0 bg-gradient-to-b from-[#FFFFFF] to-[#FFFFFF]"></div>
@@ -55,7 +63,7 @@ const links: Array<{ label: string; href: string }> =
       <!-- CTAs managed from MD -->
       <div class="mt-8 flex flex-wrap justify-center gap-4">
         <a href={ctaPrimary.href} class="btn btn-primary">
-          {ctaPrimary.label}
+          {ctaPrimary.labelKey ? t(ctaPrimary.labelKey) : ctaPrimary.label}
         </a>
         <a
   href={ctaSecondary.href}
@@ -71,7 +79,7 @@ const links: Array<{ label: string; href: string }> =
          focus-visible:ring-offset-2 focus-visible:ring-offset-white
          active:translate-y-[1px]"
 >
-  {ctaSecondary.label}
+  {ctaSecondary.labelKey ? t(ctaSecondary.labelKey) : ctaSecondary.label}
   <svg
     class="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
     viewBox="0 0 20 20"
@@ -95,7 +103,7 @@ const links: Array<{ label: string; href: string }> =
                 href={l.href}
                 class="underline decoration-[#FFC300] underline-offset-4 hover:opacity-100"
               >
-                {l.label}
+                {l.labelKey ? t(l.labelKey) : l.label}
               </a>
             </li>
           ))}
