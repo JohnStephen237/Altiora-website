@@ -65,6 +65,7 @@ service:
         video_id: "g3-VxLQO7do"
       button:
         enable: true
+        label: cta.claimYourSpot
         labelKey: cta.claimYourSpot
         link: "/signup"
 
