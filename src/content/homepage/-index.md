@@ -6,6 +6,7 @@ banner:
   image: /images/banner-img.png
   button:
     enable: true
+    label: cta.claimYourSpot
     labelKey: cta.claimYourSpot
     link: "/signup"
 
