@@ -6,7 +6,7 @@ banner:
   image: /images/banner-img.png
   button:
     enable: true
-    label: cta.claimYourSpot
+    label: Claim Your Spot
     labelKey: cta.claimYourSpot
     link: "/signup"
 
@@ -66,7 +66,7 @@ service:
         video_id: "g3-VxLQO7do"
       button:
         enable: true
-        label: cta.claimYourSpot
+        label: Claim Your Spot
         labelKey: cta.claimYourSpot
         link: "/signup"
 
