@@ -39,9 +39,12 @@ const { t } = Astro.props;
         for="nav-toggle"
         class="flex cursor-pointer items-center lg:hidden"
       >
-        <svg class="h-6 fill-current" viewBox="0 0 20 20">
+        <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24" aria-hidden="true">
           <title>{t?.("header.menuOpen")}</title>
-          <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
+          <!-- use three centered rects to avoid any stray stroke artifacts -->
+          <rect x="3" y="6" width="18" height="2" rx="1"></rect>
+          <rect x="3" y="11" width="18" height="2" rx="1"></rect>
+          <rect x="3" y="16" width="18" height="2" rx="1"></rect>
         </svg>
       </label>
       <label

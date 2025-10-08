@@ -20,16 +20,11 @@
       "url": "/how-it-works"
     },
     {
-      "name": "Pages",
+      "name": "Legal",
       "nameKey": "header.pages",
       "url": "",
       "hasChildren": true,
       "children": [
-        {
-          "name": "Sign Up",
-          "nameKey": "header.signUp",
-          "url": "/signup"
-        },
         {
           "name": "Terms And Conditions",
           "nameKey": "footer.terms",
@@ -71,6 +66,10 @@
     {
       "name": "Privacy Policy",
       "url": "/privacy-policy"
+    },
+    {
+      "name": "Cookie Policy",
+      "url": "/cookie-policy"
     }
   ]
 }

@@ -2,6 +2,12 @@
   @apply sticky top-0 z-50 bg-white py-6 transition-all duration-300 lg:bg-transparent dark:bg-darkmode-body lg:dark:bg-transparent;
 }
 
+/* Ensure header uses dark background in dark mode even before scrolling */
+.dark .header,
+[data-theme="dark"] .header {
+  background-color: var(--color-darkmode-body) !important;
+}
+
 .header-sticky {
   @apply bg-white shadow dark:bg-darkmode-light dark:shadow-black/20;
 }

@@ -30,6 +30,42 @@
   }
 }
 
+/* Footer social icons: base is light-gray, hover turns golden */
+.social-icons,
+.social-icons a,
+.social-icons svg,
+.social-icons li {
+  color: #000000 !important;
+  fill: #000000 !important;
+}
+
+/* Hover: turn the icon gold and keep the circular background subtle */
+.social-icons a:hover svg,
+.social-icons a:hover {
+  color: #FFC300 !important;
+  fill: #FFC300 !important;
+  background-color: transparent !important; /* subtle golden halo */
+}
+
+/* Ensure dark theme selectors also use the same behavior */
+.dark .social-icons,
+[data-theme="dark"] .social-icons,
+.dark .social-icons a,
+[data-theme="dark"] .social-icons a,
+.dark .social-icons svg,
+[data-theme="dark"] .social-icons svg {
+  color: #000000 !important;
+  fill: #000000 !important;
+}
+
+.dark .social-icons a:hover svg,
+[data-theme="dark"] .social-icons a:hover svg,
+.dark .social-icons a:hover,
+[data-theme="dark"] .social-icons a:hover {
+  color: #FFC300 !important;
+  fill: #FFC300 !important;
+}
+
 /* tab */
 .tab {
   @apply overflow-hidden rounded-lg border border-border;
@@ -399,6 +435,43 @@ select:invalid {
   @apply mx-[0.9rem] my-16 rounded-xl bg-white px-3 py-6 pb-16 text-center shadow;
 }
 
+/* Testimonials: dark-mode overrides */
+.dark .reviews,
+[data-theme="dark"] .reviews {
+  background-color: #0b1220; /* deep, near-black navy */
+  color: #E6EEF8; /* light text */
+}
+
+.dark .reviews .review,
+[data-theme="dark"] .reviews .review {
+  background-color: transparent; /* let section background show through */
+  color: #E6EEF8 !important;
+  box-shadow: none; /* remove white card shadow that shows as light box */
+}
+
+.dark .reviews h2,
+[data-theme="dark"] .reviews h2 {
+  color: #FFFFFF;
+}
+
+.dark .reviews p,
+[data-theme="dark"] .reviews p {
+  color: rgba(230,238,248,0.9);
+}
+
+.dark .testimonial-slider-pagination .swiper-pagination-bullet,
+[data-theme="dark"] .testimonial-slider-pagination .swiper-pagination-bullet {
+  background: rgba(230,238,248,0.18) !important;
+}
+
+.dark .testimonial-slider-pagination .swiper-pagination-bullet-active,
+[data-theme="dark"] .testimonial-slider-pagination .swiper-pagination-bullet-active {
+  background: #FFC300 !important; /* active bullet gold */
+  width: 14px !important;
+  height: 6px !important;
+  border-radius: 6px !important;
+}
+
 .review-author-avatar {
   @apply mx-auto -mt-12 h-[90px] w-[90px] -translate-y-5 rounded-full p-0.5;
 }
@@ -498,12 +571,12 @@ select:invalid {
   }
 }
 
-/* Footer uses the same color in both themes to preserve brand look */
+/* Footer dark theme: use a dark background and light text so content remains readable */
 .dark .footer,
 [data-theme="dark"] .footer {
-  --footer-bg: #CED4DA !important;
-  --footer-text: #09203f;
-  --footer-link: rgba(9,32,63,0.85);
+  --footer-bg: #0f1724 !important; /* dark navy/near-black */
+  --footer-text: #E6EEF8; /* light, slightly cool text */
+  --footer-link: rgba(230,238,248,0.9); /* link color in dark mode */
 }
 
 .dark .footer h6,
@@ -569,6 +642,16 @@ a.cta-claim:hover,
 .btn-claim:hover {
   filter: brightness(0.95);
   transform: translateY(-1px);
+}
+
+/* Mobile spacing: ensure claim-your-spot CTA has breathing room above the banner image */
+@media (max-width: 767px) {
+  a[href*="/signup"],
+  .btn[href*="/signup"],
+  a.cta-claim,
+  .btn-claim {
+    margin-bottom: 1rem; /* adds space between button and image on narrow screens */
+  }
 }
 
 /* gradient-number */
