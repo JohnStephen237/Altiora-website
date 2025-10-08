@@ -77,3 +77,21 @@ document.addEventListener("astro:after-swap", () => {
   initSwiper();
   initWaitlistForm();
 });
+
+// Fallbacks for static/staged deployments where Astro navigation events may not fire
+if (typeof window !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initSwiper();
+      initWaitlistForm();
+    });
+  } else {
+    initSwiper();
+    initWaitlistForm();
+  }
+
+  window.addEventListener('load', () => {
+    initSwiper();
+    initWaitlistForm();
+  });
+}

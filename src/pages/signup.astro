@@ -3,7 +3,9 @@ import Base from "@/layouts/Base.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 ---
 
-<script type="module" src="/src/scripts/waitlist.ts"></script>
+<script type="module">
+  import "/src/scripts/waitlist.ts";
+</script>
 
 <Base>
   <section>
@@ -109,6 +111,18 @@ import { markdownify } from "@/lib/utils/textConverter";
                   </div>
                   <div class="swiper-slide">
                     <img width="667" height="557" class="mx-auto" src="/images/about/gallery-imgs-4.png" alt="" />
+                  </div>
+                  <div class="swiper-slide">
+                    <img width="667" height="557" class="mx-auto" src="/images/how-it-work/image-1.png" alt="" />
+                  </div>
+                  <div class="swiper-slide">
+                    <img width="667" height="557" class="mx-auto" src="/images/how-it-work/image-2.png" alt="" />
+                  </div>
+                  <div class="swiper-slide">
+                    <img width="667" height="557" class="mx-auto" src="/images/how-it-work/image-3.png" alt="" />
+                  </div>
+                  <div class="swiper-slide">
+                    <img width="667" height="557" class="mx-auto" src="/images/about/gallery-imgs-3.png" alt="" />
                   </div>
                 </div>
                 <div class="relative flex justify-center">

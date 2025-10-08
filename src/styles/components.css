@@ -478,15 +478,15 @@ select:invalid {
 /* footer */
 .footer {
   /* footer color variables (defaults for light theme) */
-  --footer-bg: #000080;
-  --footer-text: #ffffff;
-  --footer-link: rgba(255,255,255,0.95);
+  --footer-bg: #CED4DA; /* permanent footer background */
+  --footer-text: #09203f; /* dark text for contrast */
+  --footer-link: rgba(9,32,63,0.85);
 
   background-color: var(--footer-bg);
   color: var(--footer-text);
   h6 {
     @apply mb-4 font-primary font-semibold lg:mb-8;
-    color: #FFC300; /* golden headers in footer */
+    color: #000000; /* black headers in footer (light theme) */
   }
 
   p {
@@ -498,12 +498,12 @@ select:invalid {
   }
 }
 
-/* Dark mode footer override: make footer background #00BFFF and adjust text */
+/* Footer uses the same color in both themes to preserve brand look */
 .dark .footer,
 [data-theme="dark"] .footer {
-  --footer-bg: #00BFFF !important;
-  --footer-text: #ffffff;
-  --footer-link: rgba(255,255,255,0.95);
+  --footer-bg: #CED4DA !important;
+  --footer-text: #09203f;
+  --footer-link: rgba(9,32,63,0.85);
 }
 
 .dark .footer h6,
@@ -897,6 +897,63 @@ a.cta-claim:hover,
   .swiper-slide {
     max-width: 100%;
   }
+}
+
+/* Logo switcher: smooth transition between light and dark logos */
+.logo-switcher {
+  position: relative;
+  display: inline-block;
+  height: auto;
+  width: auto;
+}
+.logo-switcher .logo-light,
+.logo-switcher .logo-dark {
+  transition: opacity 320ms ease-in-out, transform 320ms ease-in-out;
+  display: block;
+}
+.logo-switcher .logo-dark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transform: translateY(0);
+}
+.logo-switcher .logo-light {
+  opacity: 1;
+}
+
+.dark .logo-switcher .logo-light,
+[data-theme="dark"] .logo-switcher .logo-light {
+  opacity: 0;
+  transform: translateY(-2px);
+}
+.dark .logo-switcher .logo-dark,
+[data-theme="dark"] .logo-switcher .logo-dark {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Features banner: smooth transition between light and dark banner images */
+.features-banner-switcher {
+  position: relative;
+  width: fit-content;
+}
+.features-banner-switcher img,
+.features-banner-switcher .features-banner-light,
+.features-banner-switcher .features-banner-dark {
+  transition: opacity 420ms ease-in-out, transform 420ms ease-in-out;
+  display: block;
+}
+.features-banner-switcher .features-banner-dark {
+  opacity: 0;
+}
+.dark .features-banner-switcher .features-banner-dark,
+[data-theme="dark"] .features-banner-switcher .features-banner-dark {
+  opacity: 1;
+}
+.dark .features-banner-switcher .features-banner-light,
+[data-theme="dark"] .features-banner-switcher .features-banner-light {
+  opacity: 0;
 }
 
 /* Signup page: spacing and pagination for auth-banner carousel */

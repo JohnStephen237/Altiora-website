@@ -17,23 +17,34 @@ const {
 } = config.site;
 ---
 
-<a href="/" class="navbar-brand block">
+<a href="/" class="navbar-brand block logo-switcher" aria-label={title}>
   {
-    src || logo ? (
-      <Image
-        width={logo_width.replace("px", "") * 2}
-        height={logo_height.replace("px", "") * 2}
-        src={src ? src : logo}
-        alt={title}
-        style={{
-          height: logo_height.replace("px", "") + "px",
-          width: logo_width.replace("px", "") + "px",
-        }}
-      />
-    ) : logo_text ? (
-      logo_text
-    ) : (
-      title
-    )
+    // render both logos so CSS can transition between them
   }
+  <Image
+    class="logo-light"
+    width={logo_width.replace("px", "") * 2}
+    height={logo_height.replace("px", "") * 2}
+    src={src ? src : logo}
+    alt={title + " light"}
+    style={{
+      height: logo_height.replace("px", "") + "px",
+      width: logo_width.replace("px", "") + "px",
+    }}
+  />
+
+  <Image
+    class="logo-dark"
+    width={logo_width.replace("px", "") * 2}
+    height={logo_height.replace("px", "") * 2}
+    src="/images/logo_black.svg"
+    alt={title + " dark"}
+    style={{
+      position: 'absolute',
+      left: 0,
+      top: 0,
+      height: logo_height.replace("px", "") + "px",
+      width: logo_width.replace("px", "") + "px",
+    }}
+  />
 </a>
