@@ -10,13 +10,12 @@ const Projects = ({ projects }) => {
           return (
             <div className="lg:col-6" key={`item-${i}`}>
               <div
-                className={`flex items-center space-x-4 rounded-lg bg-[#fafafa] px-6 py-8 lg:mt-6  ${
+                className={`project-box flex items-center space-x-4 rounded-lg bg-[#fafafa] px-6 py-8 lg:mt-6  ${
                   projects.length - 1 === i ? "mb-0" : "mb-6 "
                 } `}
               >
                 <div className="relative inline-flex h-24 w-24 items-center justify-center p-3">
-                  <span className="project-icon text-[#FA7398]">
-                    {" "}
+                  <span className="project-icon">
                     <FeatherIcon className="font-semibold" />
                   </span>
                   <svg

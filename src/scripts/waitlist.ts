@@ -1,14 +1,19 @@
 import { Swiper } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Autoplay, Pagination } from "swiper/modules";
+import "swiper/css/effect-fade";
+import { Autoplay, Pagination, EffectFade } from "swiper/modules";
 
 function initSwiper() {
   new Swiper(".swiper-container", {
-    modules: [Pagination, Autoplay],
+    modules: [Pagination, Autoplay, EffectFade],
+    effect: 'fade',
+    fadeEffect: { crossFade: true },
     spaceBetween: 24,
     loop: true,
     centeredSlides: true,
+    speed: 800, // slower, smoother transition (ms)
+    autoplay: { delay: 6000, disableOnInteraction: false, pauseOnMouseEnter: true },
     pagination: { el: ".pagination", type: "bullets", clickable: true },
     breakpoints: { 768: { slidesPerView: 1 } },
   });

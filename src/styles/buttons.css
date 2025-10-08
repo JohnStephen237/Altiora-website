@@ -6,6 +6,37 @@
   @apply cursor-pointer rounded-[50px] border-0 bg-gradient-to-tl text-center font-medium text-white hover:shadow-[0px_5px_30px_rgba(252,167,111,0.5)];
 }
 
+/* Ensure outline/white buttons are readable in dark theme */
+.dark .btn-outline-primary,
+[data-theme="dark"] .btn-outline-primary,
+.dark .btn-outline-white,
+[data-theme="dark"] .btn-outline-white {
+  color: #FFFFFF !important;
+  border-color: rgba(255,255,255,0.12) !important;
+}
+
+.dark .btn-outline-primary:hover,
+[data-theme="dark"] .btn-outline-primary:hover,
+.dark .btn-outline-white:hover,
+[data-theme="dark"] .btn-outline-white:hover {
+  color: #FFFFFF !important;
+}
+
+.light .btn-outline-primary,
+[data-theme="light"] .btn-outline-primary,
+.light .btn-outline-white,
+[data-theme="light"] .btn-outline-white {
+  color: #FFFFFF !important;
+  border-color: rgba(255,255,255,0.12) !important;
+}
+
+.light .btn-outline-primary:hover,
+[data-theme="light"] .btn-outline-primary:hover,
+.light .btn-outline-white:hover,
+[data-theme="light"] .btn-outline-white:hover {
+  color: #FFFFFF !important;
+}
+
 .btn-outline-primary {
   @apply relative rounded-[50px] border-primary bg-transparent text-center capitalize text-text-dark hover:bg-transparent hover:text-white hover:shadow-[0px_5px_30px_rgba(252,167,111,0.5)] hover:before:opacity-100 dark:text-darkmode-text;
 }
