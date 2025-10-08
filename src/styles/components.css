@@ -899,6 +899,29 @@ a.cta-claim:hover,
   }
 }
 
+/* Fallback layout for Swiper slides: ensure slides are horizontal and do not stack
+   even if Swiper JS/CSS aren't initialized (production safety). */
+.auth-banner-carousel .swiper-container {
+  overflow: hidden;
+  position: relative;
+}
+.auth-banner-carousel .swiper-wrapper {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  width: 100%;
+  transition: transform 0.4s ease !important;
+}
+.auth-banner-carousel .swiper-slide {
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+.auth-banner-carousel .swiper-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* Logo switcher: smooth transition between light and dark logos */
 .logo-switcher {
   position: relative;
@@ -948,6 +971,29 @@ a.cta-claim:hover,
   opacity: 0;
 }
 .dark .features-banner-switcher .features-banner-dark,
+
+/* Miniscule logo switcher used on signup page */
+.miniscule-logo-switcher {
+  position: relative;
+}
+.miniscule-logo-switcher img {
+  transition: opacity 320ms ease-in-out, transform 320ms ease-in-out;
+  display: block;
+}
+.miniscule-logo-switcher .miniscule-dark {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+.dark .miniscule-logo-switcher .miniscule-dark,
+[data-theme="dark"] .miniscule-logo-switcher .miniscule-dark {
+  opacity: 1;
+}
+.dark .miniscule-logo-switcher .miniscule-light,
+[data-theme="dark"] .miniscule-logo-switcher .miniscule-light {
+  opacity: 0;
+}
 [data-theme="dark"] .features-banner-switcher .features-banner-dark {
   opacity: 1;
 }

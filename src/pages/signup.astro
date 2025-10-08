@@ -14,7 +14,10 @@ import { markdownify } from "@/lib/utils/textConverter";
         <!-- Left: Waitlist form -->
         <div class="min-h-[980px] bg-white py-10 lg:col-6 lg:py-[114px]">
           <div class="mx-auto w-full max-w-[480px]">
-            <img class="mb-8" src="/images/miniscule_logo.svg" alt="Altiora logo" />
+            <div class="miniscule-logo-switcher mb-8 inline-block relative">
+              <img class="miniscule-light block" src="/images/miniscule_logo.svg" alt="Altiora logo" />
+              <img class="miniscule-dark absolute left-0 top-0 block" src="/images/miniscule_logo_black.svg" alt="Altiora logo dark" />
+            </div>
 
             <h1 class="mb-3">Join the Altiora Waitlist</h1>
             <p class="text-text">
@@ -106,11 +109,22 @@ import { markdownify } from "@/lib/utils/textConverter";
                   <div class="swiper-slide">
                     <img width="667" height="557" class="mx-auto" src="/images/about/gallery-imgs-1.png" alt="" />
                   </div>
-                  <div class="swiper-slide">
+                    <div class="swiper-slide" style="flex:0 0 100%;max-width:100%;box-sizing:border-box">
                     <img width="667" height="557" class="mx-auto" src="/images/about/gallery-imgs-2.png" alt="" />
                   </div>
-                  <div class="swiper-slide">
+                    <div class="swiper-slide" style="flex:0 0 100%;max-width:100%;box-sizing:border-box">
                     <img width="667" height="557" class="mx-auto" src="/images/about/gallery-imgs-4.png" alt="" />
+                  </div>
+                    <div class="swiper-wrapper" style="display:flex;flex-wrap:nowrap;width:100%">
+                    <div class="swiper-slide" style="flex:0 0 100%;max-width:100%;box-sizing:border-box">
+                      <img width="667" height="557" class="mx-auto" src="/images/about/gallery-imgs-1.png" alt="" />
+                    </div>
+                    <div class="swiper-slide" style="flex:0 0 100%;max-width:100%;box-sizing:border-box">
+                      <img width="667" height="557" class="mx-auto" src="/images/about/gallery-imgs-2.png" alt="" />
+                    </div>
+                    <div class="swiper-slide" style="flex:0 0 100%;max-width:100%;box-sizing:border-box">
+                      <img width="667" height="557" class="mx-auto" src="/images/about/gallery-imgs-4.png" alt="" />
+                    </div>
                   </div>
                   <div class="swiper-slide">
                     <img width="667" height="557" class="mx-auto" src="/images/how-it-work/image-1.png" alt="" />
