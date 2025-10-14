@@ -43,13 +43,13 @@ service:
     tab_list:
       - title: Post & Explore Fitness Content
         icon: "video" #icon package react-feather-icon
-        image: "/images/sells-by-country.png"
+        image: "/images/home.png"
       - title: Discover Communities
         icon: "users" #icon package react-feather-icon
-        image: "/images/collaboration.png"
+        image: "/images/communities.png"
       - title: Push Yourself with Challenges
         icon: "award" #icon package react-feather-icon
-        image: "/images/sells-by-country.png"
+        image: "/images/challenges.png"
 
   our_service:
     - title: Why Get In Early?

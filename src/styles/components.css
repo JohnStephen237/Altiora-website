@@ -171,6 +171,52 @@ a::after {
   @apply block;
 }
 
+/* Homepage tab images: keep full-width on small screens, cap size and round corners on larger screens */
+.tab-content-panel img {
+  width: 100%;
+  height: auto;
+  max-width: 860px; /* reduce apparent size on large screens */
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 12px; /* rounded corners */
+  object-fit: cover;
+  display: block;
+}
+
+@media (min-width: 992px) {
+  .tab-content-panel img {
+    max-width: 480px; /* slightly smaller on wide screens */
+  }
+}
+
+@media (min-width: 1200px) {
+  .tab-content-panel img {
+    max-width: 360px; /* desktop: keep images compact */
+  }
+}
+
+/* Make the third tab image larger than the others: 540px cap on desktop and visually larger on mobile */
+.tab-content-panel:nth-of-type(3) img {
+  max-width: 540px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 992px) {
+  .tab-content-panel:nth-of-type(3) img {
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 991px) {
+  /* On smaller screens keep it larger relative to others */
+  .tab-content-panel:nth-of-type(3) img {
+    width: 92%;
+    max-width: 540px;
+  }
+}
+
 /* notice */
 .notice {
   .notice-body {
