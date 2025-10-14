@@ -300,6 +300,40 @@ a::after {
   }
 }
 
+/* Make tab images slightly larger on mobile for better visibility */
+@media (max-width: 767px) {
+  .tab-content-panel img {
+    width: 96%;
+    max-width: 520px; /* allow images to appear larger on narrow phones */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* third image a touch larger than the others on small screens */
+  .tab-content-panel:nth-of-type(3) img {
+    width: 98%;
+    max-width: 580px;
+  }
+}
+
+/* Make the third image even larger and slightly overlap above content on very small phones */
+@media (max-width: 479px) {
+  .tab-content-panel:nth-of-type(3) img {
+    max-width: 640px; /* larger cap for smallest phones */
+    margin-top: -10px; /* small negative offset to make it prominent */
+  }
+}
+
+/* Scale-on-scroll utility: apply to images/panels and toggle .in-view */
+.scale-on-scroll {
+  transition: transform 420ms cubic-bezier(.22,.9,.35,1), box-shadow 420ms ease;
+  transform-origin: 50% 60%;
+}
+.scale-on-scroll.in-view {
+  transform: scale(1.04);
+  box-shadow: 0 18px 40px rgba(2,6,23,0.18);
+}
+
 /* notice */
 .notice {
   .notice-body {

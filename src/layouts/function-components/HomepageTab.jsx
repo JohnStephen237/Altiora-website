@@ -64,6 +64,34 @@ const HomepageTab = ({ homepage_tab }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tab]);
 
+  // IntersectionObserver: toggle `in-view` on images with `.scale-on-scroll`
+  // so the CSS scale animation runs when the image is visible in viewport.
+  useEffect(() => {
+    const imgs = imgRefs.current || [];
+    if (!imgs.length) return;
+    const opts = { threshold: [0.45], rootMargin: "0px 0px -10% 0px" };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const el = entry.target;
+        if (entry.isIntersecting) el.classList.add("in-view");
+        else el.classList.remove("in-view");
+      });
+    }, opts);
+
+    imgs.forEach((img) => {
+      if (!img) return;
+      img.classList.add("scale-on-scroll");
+      try {
+        observer.observe(img);
+      } catch (e) {
+        // ignore
+      }
+    });
+
+    return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleSetTab = (i) => {
     setTab(i);
     // reset autoplay timer
@@ -88,7 +116,7 @@ const HomepageTab = ({ homepage_tab }) => {
               >
                 <img
                   ref={(el) => (imgRefs.current[index] = el)}
-                  className="w-full object-contain"
+                  className="w-full object-contain scale-on-scroll"
                   src={item.image}
                   alt={item.title}
                   onLoad={() => requestAnimationFrame(measure)}

@@ -4,19 +4,54 @@ import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import { Autoplay, Pagination, EffectFade } from "swiper/modules";
 
+let swiperInstance: any = null;
+
 function initSwiper() {
-  new Swiper(".swiper-container", {
-    modules: [Pagination, Autoplay, EffectFade],
-    effect: 'fade',
-    fadeEffect: { crossFade: true },
-    spaceBetween: 24,
-    loop: true,
-    centeredSlides: true,
-    speed: 800, // slower, smoother transition (ms)
-    autoplay: { delay: 6000, disableOnInteraction: false, pauseOnMouseEnter: true },
-    pagination: { el: ".pagination", type: "bullets", clickable: true },
-    breakpoints: { 768: { slidesPerView: 1 } },
-  });
+  try {
+    const container = document.querySelector('.swiper-container');
+    if (!container) {
+      // nothing to initialize on this page
+      return;
+    }
+
+    // destroy previous instance if present (prevents duplicate/locked state)
+    if (swiperInstance && typeof swiperInstance.destroy === 'function') {
+      try { swiperInstance.destroy(true, true); } catch (e) { /* ignore */ }
+      swiperInstance = null;
+    }
+
+    // Delay init to next frame to avoid racing with static build hydration timing
+    requestAnimationFrame(() => {
+      swiperInstance = new Swiper('.swiper-container', {
+        modules: [Pagination, Autoplay, EffectFade],
+        effect: 'fade',
+        fadeEffect: { crossFade: true },
+        spaceBetween: 24,
+        loop: true,
+        centeredSlides: true,
+        // Observe DOM changes (helpful when slider is initialized while hidden)
+        observer: true,
+        observeParents: true,
+        speed: 800, // slower, smoother transition (ms)
+        autoplay: { delay: 6000, disableOnInteraction: false, pauseOnMouseEnter: true },
+        pagination: { el: '.pagination', type: 'bullets', clickable: true },
+        breakpoints: { 768: { slidesPerView: 1 } },
+      });
+      // mark container so we can quickly detect init in production and for debugging
+      try {
+        const container = document.querySelector('.swiper-container');
+        if (container instanceof HTMLElement) {
+          container.setAttribute('data-swiper-ready', 'true');
+        }
+      } catch {}
+      // eslint-disable-next-line no-console
+      console.info('Swiper initialized', { hasInstance: !!swiperInstance });
+    });
+  } catch (err) {
+    // Provide a helpful console message in production for diagnostics
+    // eslint-disable-next-line no-console
+    console.warn('Swiper init failed:', err);
+  }
 }
 
 function initWaitlistForm() {
@@ -70,6 +105,7 @@ function initWaitlistForm() {
 
 // Works with normal loads and Astro view transitions:
 document.addEventListener("astro:page-load", () => {
+  // Astro navigation: init after swap
   initSwiper();
   initWaitlistForm();
 });
@@ -80,18 +116,18 @@ document.addEventListener("astro:after-swap", () => {
 
 // Fallbacks for static/staged deployments where Astro navigation events may not fire
 if (typeof window !== 'undefined') {
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      initSwiper();
-      initWaitlistForm();
-    });
-  } else {
+  const runOnce = () => {
+    // prevent duplicate initialization if called multiple times
+    if (swiperInstance) return;
     initSwiper();
     initWaitlistForm();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runOnce);
+  } else {
+    runOnce();
   }
 
-  window.addEventListener('load', () => {
-    initSwiper();
-    initWaitlistForm();
-  });
+  window.addEventListener('load', runOnce);
 }
