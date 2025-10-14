@@ -39,7 +39,7 @@ key_features:
 service:
   homepage_tab:
     title: Altiora in Action
-    description: "Altiora is built to make fitness social, fun, and motivating. Here’s a glimpse into the core experiences you’ll unlock when you join"
+    description: "Altiora is built to make fitness social, fun, and motivating. Here’s a glimpse into the core experiences you’ll unlock once you join"
     tab_list:
       - title: Post & Explore Fitness Content
         icon: "video" #icon package react-feather-icon

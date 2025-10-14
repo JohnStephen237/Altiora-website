@@ -36,21 +36,15 @@ const links: any[] =
 
 <Base title={metaTitle} description={description} image={image}>
   <!-- locale initialized in frontmatter -->
-  <section class="relative overflow-hidden">
-    <!-- Theme-aware background: light -> white, dark -> deep navy -->
-    <div class="absolute inset-0 bg-gradient-to-b from-white to-white dark:from-[#0b1220] dark:to-[#0b1220]"></div>
+  <section class="error-404">
+    <div class="error-bg" aria-hidden="true"></div>
 
-  <div class="relative container py-20 text-center text-black dark:text-white z-10">
-      <!-- Illustration -->
-      <img
-        src={image}
-        alt="404 illustration"
-        width="120"
-        height="120"
-        class="mx-auto mb-6 h-28 w-28"
-        loading="lazy"
-        decoding="async"
-      />
+    <div class="relative container py-20 text-center text-black dark:text-white z-10 error-content">
+      <!-- Illustration: include both light & dark versions and crossfade via CSS -->
+      <div class="error-illustration mx-auto mb-6 h-28 w-28" aria-hidden="true">
+        <img src="/images/404.svg" alt="404 illustration" class="light" loading="lazy" decoding="async" />
+        <img src="/images/404_dark.svg" alt="404 illustration dark" class="dark" loading="lazy" decoding="async" />
+      </div>
 
       <!-- Title from MD -->
   <h1 class="mb-3 text-3xl font-semibold md:text-5xl text-black dark:text-white relative z-20" set:html={markdownify(title)} />

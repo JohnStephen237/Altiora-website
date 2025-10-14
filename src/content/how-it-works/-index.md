@@ -9,29 +9,30 @@ image: ""
 performance:
   - title: Share your journey
     description: Post workouts, highlights, and progress videos in seconds and make your fitness story visible
-    image: "/images/how-it-work/results.png"
+    image: "/images/how-it-work/image-1.png"
   - title: Connect with communities
     description: Join hubs for gym, yoga, sports, dance, and more and meet people locally and globally
-    image: "/images/how-it-work/market-professionals.png"
+    image: "/images/how-it-work/image-2.png"
   - title: Grow through challenges
     description: Push yourself with gamified challenges and celebrate every milestone along the way
-    image: "/images/how-it-work/awards.png"
+    image: "/images/how-it-work/image-3.png"
+    
 # works - visual step by step
 our_works:
   - title: Step 1 — Post your workouts
-    image: "/images/how-it-work/image-1.png"
+    image: "/images/home.png"
     list:
       - Record or upload in seconds
       - Share with friends or the global community
       - Inspire others with your journey
   - title: Step 2 — Join communities
-    image: "/images/how-it-work/image-2.png"
+    image: "/images/communities.png"
     list:
       - Explore groups by sport or interest
       - Connect locally or worldwide
       - Find people who move like you
   - title: Step 3 — Take on challenges
-    image: "/images/how-it-work/image-3.png"
+    image: "/images/challenges.png"
     list:
       - Compete solo or with your community
       - Track progress over time

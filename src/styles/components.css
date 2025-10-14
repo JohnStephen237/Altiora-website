@@ -3,6 +3,89 @@
   @apply py-16;
 }
 
+/* 404 theme-aware styles and crossfade illustration */
+.error-404 {
+  position: relative;
+  overflow: hidden;
+}
+.error-404 .error-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, #ffffff 0%, #ffffff 100%);
+  transition: background-color 420ms ease, opacity 420ms ease;
+}
+.dark .error-404 .error-bg,
+[data-theme="dark"] .error-404 .error-bg {
+  background: linear-gradient(to bottom, #0b1220 0%, #0b1220 100%);
+}
+
+.error-404 .error-illustration {
+  position: relative;
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+}
+.error-404 .error-illustration img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 420ms ease, transform 420ms ease;
+}
+.error-404 .error-illustration img.light {
+  opacity: 1;
+  transform: translateY(0);
+}
+.error-404 .error-illustration img.dark {
+  opacity: 0;
+  transform: translateY(0);
+}
+.dark .error-404 .error-illustration img.light,
+[data-theme="dark"] .error-404 .error-illustration img.light {
+  opacity: 0;
+}
+.dark .error-404 .error-illustration img.dark,
+[data-theme="dark"] .error-404 .error-illustration img.dark {
+  opacity: 1;
+}
+
+.error-404 .error-content {
+  position: relative;
+  z-index: 10;
+}
+
+.error-404 .error-content h1 {
+  transition: color 320ms ease, opacity 320ms ease;
+}
+
+/* Force theme-aware text colors on the 404 page so all text remains readable */
+.error-404 {
+  --error-404-text: #09203f; /* dark-blue for light theme */
+  --error-404-muted: rgba(9,32,63,0.75);
+}
+.error-404 .error-content,
+.error-404 .error-content * {
+  color: var(--error-404-text) !important;
+}
+
+.error-404 a {
+  color: #FFC300 !important; /* keep CTA/links visible (gold) */
+}
+
+.dark .error-404,
+[data-theme="dark"] .error-404 {
+  --error-404-text: #E6EEF8; /* light text for dark theme */
+  --error-404-muted: rgba(230,238,248,0.85);
+}
+
+/* Ensure prose content inside the 404 follows the color variable and is readable */
+.error-404 .prose,
+.error-404 .prose * {
+  color: var(--error-404-text) !important;
+}
+
 /* container */
 .container {
   @apply mx-auto! max-w-[1202px]! px-3!;

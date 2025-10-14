@@ -32,21 +32,23 @@ const page_data = {
         <PageHeader page_data={page_data} />
       </div>
 
-      <div class="row mt-14">
+      <div class="row mt-8">
         {
           performance.map((item, i) => (
-            <div class="mt-10 text-center sm:col-6 md:col-4 md:mb-0">
+            <div class="mt-8 text-center sm:col-6 md:col-4 md:mb-0">
               <div
-                class={`relative mx-auto mb-8 flex h-[184px] w-[184px] items-center justify-center rounded-xl bg-white p-4 shadow-lg ${
+                class={`relative mx-auto mb-8 flex h-[184px] w-[184px] items-center justify-center rounded-xl bg-transparent p-0 shadow-none ${
                   performance.length - 1 !== i
                     ? "after:absolute after:-right-4 after:-z-[1] after:hidden after:w-full after:translate-x-full after:border-b-2 after:border-dashed after:border-primary/50 after:content-[''] md:after:block"
                     : undefined
                 }`}
               >
-                <Image height={122} width={144} src={item.image} alt="" />
+                <div class="rounded-2xl overflow-hidden transition-shadow duration-300 ease-in-out">
+                  <Image class="block w-[152px] h-[152px] object-contain transition-transform duration-400 ease-in-out rounded-2xl" height={152} width={152} src={item.image} alt="" />
+                </div>
               </div>
               <h2 class="h5">{item.title}</h2>
-              <p class="mt-4">{item.description}</p>
+              <p class="mt-1">{item.description}</p>
             </div>
           ))
         }
@@ -57,45 +59,60 @@ const page_data = {
   <section>
     <div class="container">
       {
-        our_works.map((item, index) => (
-          <div class="gx-5 row mt-16 items-center first:mt-12">
-            <div
-              class={`lg:col-7 ${
-                index % 2 === 0 ? "lg:order-1" : "lg:order-0"
-              }`}
-            >
-              <div class="relative">
-                <Image
-                  class="w-full object-contain"
-                  alt="service"
-                  width={473}
-                  height={286}
-                  src={item.image}
-                />
-              </div>
-            </div>
-            <div
-              class={`mt-6 lg:col-5 lg:mt-0 ${
-                index % 2 === 0 ? "lg:order-0" : "lg:order-1"
-              }`}
-            >
-              <div class="text-container">
-                <h2 class="lg:text-4xl">{item.title}</h2>
+        our_works.map((item, index) => {
+          // Make the third image (challenges.png) larger than the other small illustrations
+          const isSmallIllustration = /home\.png|communities\.png/.test(item.image);
+          const isLargeThird = /challenges\.png/.test(item.image);
+          const imgWidth = isLargeThird ? 540 : isSmallIllustration ? 380 : 473;
+          const imgHeight = isLargeThird ? 324 : isSmallIllustration ? 228 : 286;
+          const imgClass = isLargeThird
+            ? "w-full h-auto object-contain transition-transform duration-400 ease-in-out max-w-[540px] mx-auto"
+            : isSmallIllustration
+            ? "w-full h-auto object-contain transition-transform duration-400 ease-in-out max-w-[380px] mx-auto"
+            : "w-full h-auto object-contain transition-transform duration-400 ease-in-out";
 
-                {item.list && (
-                  <ul class="mt-6 text-text-dark lg:-ml-4">
-                    {item.list.map((list) => (
-                      <li class="mb-2 flex items-center rounded px-4">
-                        <AiFillCheckCircle className="mr-3 fill-(--color-primary) text-white" />
-                        {list}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+          return (
+            <div class="gx-5 row mt-16 items-center first:mt-12">
+              <div
+                class={`lg:col-7 ${
+                  index % 2 === 0 ? "lg:order-1" : "lg:order-0"
+                }`}
+              >
+                <div class="relative">
+                  <div class="rounded-2xl overflow-hidden transition-shadow duration-300 ease-in-out">
+                    <Image
+                      class={`${imgClass} rounded-2xl`}
+                      alt="service"
+                      width={imgWidth}
+                      height={imgHeight}
+                      src={item.image}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class={`mt-6 lg:col-5 lg:mt-0 ${
+                  index % 2 === 0 ? "lg:order-0" : "lg:order-1"
+                }`}
+              >
+                <div class="text-container">
+                  <h2 class="lg:text-4xl">{item.title}</h2>
+
+                  {item.list && (
+                    <ul class="mt-6 text-text-dark lg:-ml-4">
+                      {item.list.map((list) => (
+                        <li class="mb-2 flex items-center rounded px-4">
+                          <AiFillCheckCircle className="mr-3 fill-(--color-primary) text-white" />
+                          {list}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))
+          );
+        })
       }
     </div>
   </section>

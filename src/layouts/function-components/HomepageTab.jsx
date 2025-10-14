@@ -7,6 +7,7 @@ const HomepageTab = ({ homepage_tab }) => {
   const [tab, setTab] = useState(0);
   const autoplayRef = useRef(null);
   const AUTOPLAY_MS = 8000;
+  const HEIGHT_BUFFER = 36; // safety buffer to avoid fractional/subpixel clipping
   const mediaRef = useRef(null);
   const imgRefs = useRef([]);
 
@@ -32,7 +33,9 @@ const HomepageTab = ({ homepage_tab }) => {
       if (h > max) max = h;
     });
     if (max > 0) {
-      mediaRef.current.style.height = `${Math.ceil(max)}px`;
+      // add a small buffer so images that slightly overflow due to rounding or shadow
+      // won't get visually clipped by the container
+      mediaRef.current.style.height = `${Math.ceil(max + HEIGHT_BUFFER)}px`;
       mediaRef.current.classList.add("is-measured");
     } else {
       // remove any previous measured state so panels remain in-flow
@@ -42,12 +45,24 @@ const HomepageTab = ({ homepage_tab }) => {
   };
 
   useEffect(() => {
-    // measure once images load
+    // measure once images load and again on the next frame to ensure layout
     measure();
+    const raf = requestAnimationFrame(() => measure());
     window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", measure);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Re-measure whenever the active tab changes (handles autoplay/tab switches)
+  useEffect(() => {
+    // schedule next frame to ensure layout updated
+    const t = requestAnimationFrame(() => measure());
+    return () => cancelAnimationFrame(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tab]);
 
   const handleSetTab = (i) => {
     setTab(i);
@@ -76,7 +91,7 @@ const HomepageTab = ({ homepage_tab }) => {
                   className="w-full object-contain"
                   src={item.image}
                   alt={item.title}
-                  onLoad={measure}
+                  onLoad={() => requestAnimationFrame(measure)}
                 />
               </div>
             ))}
