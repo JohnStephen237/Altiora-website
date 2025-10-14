@@ -290,6 +290,102 @@ a::after {
   display: block;
 }
 
+/* Animated tab panels: crossfade + slight slide */
+.tab-content {
+  position: relative;
+}
+
+/* Keep panels in the document flow to avoid clipping; animate opacity + translate */
+.tab-content {
+  display: block;
+}
+
+
+
+.tab-content .tab-content-panel {
+  display: block; /* ensure visible in flow */
+  position: relative;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 1000ms cubic-bezier(.24,.96,.38,1), transform 1000ms cubic-bezier(.24,.96,.38,1);
+  pointer-events: none;
+  margin-bottom: 1.5rem; /* prevent panels overlapping the nav or following content */
+}
+
+.tab-content .tab-content-panel.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* tab-media: measured container for absolutely stacked panels to allow crossfade without layout jump */
+.tab-media {
+  /* keep the media in the document flow by default to avoid clipping by ancestor containers
+     on certain layouts; absolute stacking is fragile across different parent layouts. We still
+     allow positioning but prefer relative/in-flow layout so images determine height naturally.
+     When JS measures and sets a fixed height on the container, absolute stacking will work as
+     intended; otherwise the panels remain in-flow. */
+  position: relative;
+  width: 100%;
+  overflow: visible; /* ensure the measured height can expand without clipping */
+}
+
+.tab-media .tab-content-panel {
+  /* keep panels in-flow by default (prevents being cut off). When JS sets a fixed height on
+     `.tab-media` the panels can be absolutely positioned safely; keep margin reset to avoid
+     accidental overlap with headings on mobile. */
+  position: relative;
+  left: auto;
+  top: auto;
+  width: 100%;
+  display: block;
+  margin: 0 0 1rem 0; /* small gap below media to separate from following content */
+}
+
+.tab-media .tab-content-panel img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* When JS measurement is used we may apply a fixed height on .tab-media; this rule keeps
+   absolutely stacked panels centered inside the container when that happens. */
+.tab-media.is-measured {
+  position: relative;
+}
+.tab-media.is-measured .tab-content-panel {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  margin: 0;
+}
+
+/* Mobile: ensure there's breathing room between media and the section title */
+@media (max-width: 767px) {
+  .tab-media {
+    margin-bottom: 1.25rem; /* extra space below images */
+  }
+
+  /* add space above the title to keep images from touching it on some small viewports */
+  .text-container h2 {
+    margin-top: 0.75rem;
+  }
+}
+
+/* Tab nav: subtle movement and color change for active item */
+.tab-nav-item {
+  transition: transform 420ms cubic-bezier(.2,.8,.2,1), color 420ms cubic-bezier(.2,.8,.2,1), opacity 420ms cubic-bezier(.2,.8,.2,1);
+}
+
+.tab-nav-item.active {
+  transform: translateY(-3px) scale(1.03);
+  color: var(--global-link-hover);
+  opacity: 1;
+}
+
+/* If you'd like a precise moving underline, we can measure tab position in JS. This CSS provides a simple visual affordance. */
+
 /* accordion */
 .accordion {
   background-color: #fff;
